@@ -1,0 +1,143 @@
+html {
+	height: 100%;
+}
+body {
+	margin: 0;
+	padding: 0;
+	height: 100%;
+}
+
+main {
+	font-family: Arial, sans-serif;
+	position: relative;
+	height: 100%;
+}
+
+header { 
+	font-family: Arial, sans-serif;
+	font-size: smaller;
+	text-align: left;
+	margin-left: 150px;
+}
+
+h1 {
+	color: indigo;
+	text-decoration: underline;
+}
+
+h1>a:visited {
+	color: indigo;
+	font-style: italic;
+}
+
+h1>a:hover {
+	color:green;
+}
+
+li {
+	margin-top: 25px;
+	font-weight: bold;
+}
+
+.menu {
+	margin-left: 10px;
+	text-decoration: underline;
+}
+
+.strike {
+	text-decoration: line-through;
+	font-weight: normal;
+}
+
+.sidebar {
+	position: absolute;
+	top: -70px;
+	bottom: -70px;
+	left: 0;
+	width: 120px;
+	background-color: #CCCCCC;
+	border-right: 1px solid black;
+}
+
+.leftbar {
+	float: right;
+	top: 0;
+	bottom: 0;
+	right: 0;
+	width: 150px;
+	background-color: #CCCCCC;
+	border-left: 1px solid black;
+	height: 100%;
+}
+
+.rightside {
+	position: relative;
+	margin-left: 150px;
+	background-color: #009;
+}
+
+.bold:hover {
+	font-weight: bolder;
+	font-style: italic;
+}
+
+.box {
+	height: 50px;
+	width: 50px;
+	padding: 10px 10px;
+	border: 1px solid black;
+	margin: 25px; 
+	font-weight: bold;
+	color: white;
+	font-size: smaller;
+	float: left;
+}
+
+.arrow {
+	float: left;
+	position: relative;
+	top: -80px;
+	right: -45px;
+}
+
+.foot {	
+	font-weight: bold;	
+	clear: both;
+	text-align: center;
+}
+
+.corner {
+	position: fixed;
+	top: 0px;
+	right: 0px;
+}
+
+.red {
+	background-color: red;
+}
+
+.orange {
+	background-color: orange;
+
+}
+
+.yellow {
+	background-color: yellow;
+	color: black;
+}
+
+.green {
+	background-color: green;
+	clear: left;
+
+}
+
+.blue {
+	background-color: blue;
+}
+
+.violet {
+	background-color: violet;
+}
+
+

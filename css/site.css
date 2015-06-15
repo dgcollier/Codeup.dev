@@ -1,0 +1,123 @@
+h1 {
+	color: black;
+	text-decoration: underline;
+}
+
+h2 {
+	color: black;
+}
+
+h3 {
+	color: black;
+	font-style: italic;
+}
+
+h4 {
+	color:gray;
+}
+
+p {
+	padding-top: 5px;
+	padding-bottom:  5px;
+	background-color: gray;
+}
+
+td {
+	text-align: center;
+}
+
+table {
+	background-color: orange;
+	padding: 10px auto;
+	margin: 20px auto;
+}
+
+a:link {
+	color: gray;
+	font-style: underline;
+}
+
+a:visited {
+	color: black;
+	text-decoration: underline;
+}
+
+a:hover {
+	color: orange;
+	background-color: gray;
+}
+
+a:active {
+	color: gray;
+}
+
+li:first-child {
+	font-weight: bolder;
+	background-color: white; 
+}
+
+li:nth-child(2) {
+	outline: solid;
+	outline-width: "4";
+	outline-color: black;
+
+}
+
+li:nth-child(4){
+	outline: dashed;
+	outline-width: 2;
+	outline-color: black;
+}
+
+.listbox {
+	width: 60px;
+}
+
+.container {
+    margin: 20px auto;
+    width: 640px;
+    padding: 10px;
+}
+
+header {
+	background-color: rgba(200, 200, 200, .60);
+	font-family: Impact, Arial, sans-serif;
+}
+
+main {
+	background-color: rgba(200, 200, 200, .60);
+}
+
+body {
+	background-image: url(/img/uchicago2.jpg);
+	background-attachment: fixed;
+	background-size: cover;
+	font-family: Arial, Impact, sans-serif;
+}
+
+.headerz {
+	text-decoration: underline;
+}
+
+li {
+	list-style-type: square;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+#faq1 {
+	width: 161px;
+}
+
+.faqA {
+	font-style: italic;
+	text-decoration: underline;
+}
+
+
+/*
+My 
+First
+CSS
+File!
+*/
