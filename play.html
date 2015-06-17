@@ -1,0 +1,81 @@
+<html>
+<head>
+    <title>Examples from Class</title>
+</head>
+<body>
+    <h1>Examples from Text or Instructor</h1>
+    <script type="text/javascript">
+
+        for (var i = 0; i < 10; i++); {
+            console.log('for loop iteration # ' +i);
+        }
+
+        function sayHello(firstName, lastName) {
+            console.log("Hello, Glacier!");
+        }
+
+        var firstName = "Glacier";
+        var lastName = "Cohort";
+
+        sayHello(firstName, lastName);
+        sayHello("Ryan", "Orsinger");
+        sayHello("Dylan", "P");
+        sayHello("Justin", "");
+        
+
+        function sum (a, b) {
+            console.log("I'm about to be summed!")
+
+            console.log("I've been summed!");
+
+            return a + b;
+
+        }
+
+        var add = sum;
+
+        var result = sum(234, 245245);
+
+        console.log(result)
+
+        var result2 = add(5343, 3433)
+
+        console.log(result2) 
+
+        //console.log(sum(1, sum(2, 3)));
+
+        function doAThing(callback) {
+            console.log("Calling callback function.");
+
+            return callback();
+        }
+
+        doAThing(sayHello);
+
+        doAThing(function() {
+            console.log("I am an anonymous function.");
+        });
+
+        var subtract = function (a, b) {
+            return a - b;
+        };
+
+        console.log(subtract(30939, 20900));
+
+    </script>
+    <script type="text/javascript">
+
+    var quest;
+
+    do { 
+        quest = prompt("What..........is your quest?");
+    } while(!quest);
+
+    
+
+
+
+    </script>
+
+</body>
+</html>
