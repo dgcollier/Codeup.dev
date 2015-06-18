@@ -1,0 +1,29 @@
+<html>
+<head>
+    <title>Split/Join Arrays</title>
+</head>
+<body>
+    <h1>JS Split/Join Arrays Test</h1>
+    <script type="text/javascript">
+    "use strict";
+    (function() {
+        
+        var planets = ['Mercury', 'Venus', 'Earth', 'Mars', 'Jupiter', 'Saturn', 'Uranus', 'Neptune'];
+        var planetsAsString;
+        var planetsAsArray;
+
+
+        planetsAsString = planets.join(' | ');
+        console.log(planetsAsString);
+
+
+        planetsAsArray = planetsAsString.split(' | ');
+        console.log(planetsAsArray);
+
+
+    })();
+
+    </script>
+
+</body>
+</html>

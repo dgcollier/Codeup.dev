@@ -19,23 +19,28 @@
 
     (function() {
 
-    var HpNames = ['Harry', 'Ron', 'Hermione', 'Neville'];
-    var LotrNames = ['Aragorn', 'Gandalf', 'Merriweather', 'Boromir'];
+        var HpNames = ['Harry', 'Ron', 'Hermione', 'Neville'];
+        var LotrNames = ['Aragorn', 'Gandalf', 'Merriweather', 'Boromir'];
+        var JohnSnow = ['nothing'];
 
 
-    console.log(HpNames);
+        console.log(HpNames);
 
-    for (var i = 0; i < HpNames.length; i++) { 
-        console.log('The name at index ' + i + ' is ' + HpNames[i] + '.');
-    }
+        for (var i = 0; i < HpNames.length; i++) { 
+            console.log('The name at index ' + i + ' is ' + HpNames[i] + '.');
+        }
 
-    console.log(LotrNames);
+        console.log(LotrNames);
 
-    LotrNames.forEach(function (element, index, array){
-        console.log('The name at index ' + index + ' is ' + element + '.');
-    });
+        LotrNames.forEach(function (Lotr, index, array) {
+            console.log('The name at index ' + index + ' is ' + Lotr + '.');
+        });
 
-    console.log('John Snow knows nothing.')
+        JohnSnow.forEach(function (thing, index, array) {
+            console.log('John Snow knows ' + thing + ".");
+        });
+            
+
 
     })();
     </script>
