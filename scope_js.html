@@ -1,0 +1,38 @@
+<html>
+<head>
+    <title>JS Functions</title>
+</head>
+<body>
+    <h1>JS Functions Test</h1>
+
+    <script type="text/javascript">
+    "use strict";
+    
+    (function() {
+
+        var myNameIs = 'Dave'; 
+
+        function sayHello(name) {
+            
+            console.log("My name is " + myNameIs + ".");
+        }
+
+        sayHello(myNameIs);
+
+        var random = Math.floor((Math.random()*100)+1);
+
+        function isOdd(number) {
+
+            if (number % 2 == 0) {
+                console.log("The number " + number + " is even.");
+            } else 
+                console.log("The number " + number + " is odd.");
+            }
+
+        isOdd(random);
+        isOdd(15);
+    })();
+
+    </script>
+</body>
+</html>
