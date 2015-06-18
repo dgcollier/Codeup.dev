@@ -1,0 +1,27 @@
+<html>
+<head>
+    <title>Object Intro</title>
+</head>
+<body>
+    <h1>JS Object Intro Test</h1>
+    <script type="text/javascript">
+    "use strict";
+    (function(){
+
+        var person = {
+            firstName: "Dave",
+            lastName: "Collier"
+        };
+
+        person.sayHello = function () {
+            alert('Hello, ' + this.firstName + ' ' + this.lastName + '!');    
+        }
+
+        person.sayHello();
+
+    })();
+
+    </script>
+
+</body>
+</html>

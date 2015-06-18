@@ -1,0 +1,65 @@
+<html>
+<head>
+    <title>JSON Objects</title>
+</head>
+<body>
+    <h1>JSON Objects Test</h1>
+
+    <script type="text/javascript">
+    (function(){
+        
+        var books = 
+        [
+            {
+                'title':'Leviathan', 
+                'author': {
+                    'firstName':'Thomas', 
+                    'lastName':'Hobbes'
+                }
+            }, 
+            {
+                'title':'Two Treatises of Government', 
+                'author': {
+                    'firstName':'John', 
+                    'lastName':'Locke'
+                }
+            }, 
+            {
+                'title':'A Treatise on Human Nature', 
+                'author': {
+                    'firstName':'David', 
+                    'lastName':'Hume'
+                }
+            }, 
+            {
+                'title':'Grounding for the Metaphysics of Morals', 
+                'author': {
+                    'firstName':'Immanuel', 
+                    'lastName':'Kant'
+                }
+            },
+            {
+                'title':'The Social Contract', 
+                'author': {
+                    'firstName':'Jean-Jacques', 
+                    'lastName':'Rousseau'
+                }
+            }
+        ];
+
+        console.log(books);
+
+        books.forEach(function (book, index) {
+
+            console.log("Book # " + (index + 1));
+            console.log("Title: " + book.title);
+            console.log("Author: " + book.author.firstName + " " + book.author.lastName);
+            console.log("---");
+        });
+    
+    })();
+
+    </script>
+
+</body>
+</html>
