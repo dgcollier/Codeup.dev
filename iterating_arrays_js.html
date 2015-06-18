@@ -19,13 +19,23 @@
 
     (function() {
 
-    var names = ["Harry", "Ron", "Hermione", "Neville"];
+    var HpNames = ['Harry', 'Ron', 'Hermione', 'Neville'];
+    var LotrNames = ['Aragorn', 'Gandalf', 'Merriweather', 'Boromir'];
 
-    console.log(names);
-    console.log(names[0]);
-    console.log(names[1]);
-    console.log(names[2]);
-    console.log(names[3]);
+
+    console.log(HpNames);
+
+    for (var i = 0; i < HpNames.length; i++) { 
+        console.log('The name at index ' + i + ' is ' + HpNames[i] + '.');
+    }
+
+    console.log(LotrNames);
+
+    LotrNames.forEach(function (element, index, array){
+        console.log('The name at index ' + index + ' is ' + element + '.');
+    });
+
+    console.log('John Snow knows nothing.')
 
     })();
     </script>
