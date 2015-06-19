@@ -17,11 +17,11 @@
 
             },
             logInfo: function (round) {
-
-                if (round == true) {  
-                    console.log('The area of a circle with a radius of ' + this.radius + ' is ' + Math.round(this.getArea()) + '.');
+                var message = 'Area of a circle with radius: ' + this.radius + ' is: ';
+                if (round) {  
+                    console.log(message + Math.round(this.getArea()) + '.');
                 } else {
-                    console.log('The area of a circle with a radius of ' + this.radius + ' is ' + this.getArea() + '.');  
+                    console.log(message + this.getArea() + '.');  
                 }
             }
         };
