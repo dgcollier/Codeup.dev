@@ -27,7 +27,7 @@
         // cancel the interval/timeout for updateTimer()
         function defuseTheBOM()
         {
-            clearTimeout(intervalId);
+            clearInterval(intervalId);
             console.log('Bomb defused.');
         }
 
