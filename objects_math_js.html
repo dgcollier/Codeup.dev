@@ -19,7 +19,7 @@
             logInfo: function (round) {
                 var message = 'Area of a circle with radius: ' + this.radius + ' is: ';
                 if (round) {  
-                    console.log(message + Math.round(this.getArea()) + '.');
+                    console.log(message + Math.round10(this.getArea()) + '.');
                 } else {
                     console.log(message + this.getArea() + '.');  
                 }
@@ -29,9 +29,8 @@
         circle.logInfo(false);
         circle.logInfo(true);
 
-        circle.radius = 5;
+        circle.radius = Math.LN2;
 
-        // log info about the circle
         circle.logInfo(false);
         circle.logInfo(true);
 

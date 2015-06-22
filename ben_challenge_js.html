@@ -9,11 +9,13 @@
         (function() {  
 
             function reverseArray(array) {
-               
+                var array = new Array;
+                for(var i = input.length - 1; i < 0; i--) {
+                    array.push(input[i]);
+                } 
+                return array;     
             }
 
-            
-            
             function testReverse(array) {
                 console.log('Array:')
                 console.log(array);
@@ -21,24 +23,20 @@
                 console.log(reverseArray(array));
             }
 
-            testReverse([]);
-            testReverse('a');
-            testReverse('a', 'b');
-            testReverse('a', 'b', 'c', 'd', 'e');
-        }
-
-
-
-
-
-
-
-
-
-
+                testReverse('a');
+                testReverse('a', 'b');
+                testReverse('a', 'b', 'c', 'd', 'e');
 
         })();
     </script>
 
 </body>
 </html>
+
+function reverseArr(input) {
+    var ret = new Array;
+    for(var i = input.length-1; i >= 0; i--) {
+        ret.push(input[i]);
+    }
+    return ret;
+
