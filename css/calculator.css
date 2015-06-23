@@ -1,0 +1,26 @@
+.wrapper {
+    height: 50px;
+    font-size: 24px;
+
+}
+
+h1 {
+    text-align: center;
+}
+
+.btn {
+    padding: 10px;
+    margin: 10px;
+}
+
+button.btn:hover {
+    background-color: #CCC;
+}
+
+div.btn:hover {
+    background-color: #FFF;
+}
+
+.btn-width {
+    width: 95px;
+}
