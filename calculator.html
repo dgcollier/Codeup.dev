@@ -6,144 +6,41 @@
     <link rel="stylesheet" type="text/css" href="/css/calculator.css">
 </head>
 <body>
-    <form id='form' name='Calculator'>
-    <h1>JS Calculator Exercise</h1>
-    <div align='center' id='wrapper'>
-        <div>
-            <input type='text' maxlength='50' size='15' id='display1' value=''readonly>
-            <input type='text' maxlength='1' size='4' id='display2' value=''readonly>
-            <input type='text' maxlength='50' size='15' id='display3' value=''readonly>
+    <main id='main'>
+        <h1>Texas Instruments</h1>
+        <div align='center'>
+            <div id='inputFields'>
+                <input maxlength='50' id='display1' value='' placeholder='first input' readonly>
+                <input maxlength='1' id='display2' value='' placeholder='+ - * /' readonly>
+                <input maxlength='50' id='display3' value='' placeholder='second input' readonly>
+            </div>
+            <div id='buttonPad'>
+                <!-- Buttons 1, 2, 3, and + -->
+                    <button value= 1 class='btn btn-alert btn-width raised' id='btn1'>1</button>
+                    <button value= 2 class='btn btn-alert btn-width raised' id='btn2'>2</button>
+                    <button value= 3 class='btn btn-alert btn-width raised' id='btn3'>3</button>
+                    <button value= + class='btn btn-warning btn-width raised' id='btnPlus'>+</button><br>
+
+                <!-- Buttons 4, 5, 6, and - -->
+                    <button value= 4 class='btn btn-alert btn-width raised' id='btn4'>4</button>
+                    <button value= 5 class='btn btn-alert btn-width raised' id='btn5'>5</button>
+                    <button value= 6 class='btn btn-alert btn-width raised' id='btn6'>6</button>
+                    <button value= - class='btn btn-warning btn-width raised' id='btnMinus'>-</button><br>
+
+                <!-- Buttons 7, 8, 9, and * -->
+                    <button value= 7 class='btn btn-alert btn-width raised' id='btn7'>7</button>
+                    <button value= 8 class='btn btn-alert btn-width raised' id='btn8'>8</button>
+                    <button value= 9 class='btn btn-alert btn-width raised' id='btn9'>9</button>
+                    <button value= * class='btn btn-warning btn-width raised' id='btnTimes'>*</button><br>
+
+                <!-- Buttons c, 0, =, and / -->
+                    <button value= C class='btn btn-danger btn-width raised' id='btnClear'>C</button>
+                    <button value= 0 class='btn btn-alert btn-width raised' id='btn0'>0</button>
+                    <button value= = class='btn btn-success btn-width raised' id='btnEquals'>=</button>
+                    <button value= / class='btn btn-warning btn-width raised' id='btnDivide'>/</button>
+            </div>
         </div>
-        <div>
-            <!-- Buttons 1, 2, 3, and + -->
-                <button value= 1 class='btn btn-default btn-width' id='btn1'>1</button>
-                <button value= 2 class='btn btn-default btn-width' id='btn2'>2</button>
-                <button value= 3 class='btn btn-default btn-width' id='btn3'>3</button>
-                <button value= + class='btn btn-default btn-width' id='btnPlus'>+</button><br>
-
-            <!-- Buttons 4, 5, 6, and - -->
-                <button value= 4 class='btn btn-default btn-width' id='btn4'>4</button>
-                <button value= 5 class='btn btn-default btn-width' id='btn5'>5</button>
-                <button value= 6 class='btn btn-default btn-width' id='btn6'>6</button>
-                <button value= - class='btn btn-default btn-width' id='btnMinus'>-</button><br>
-
-            <!-- Buttons 7, 8, 9, and * -->
-                <button value= 7 class='btn btn-default btn-width' id='btn7'>7</button>
-                <button value= 8 class='btn btn-default btn-width' id='btn8'>8</button>
-                <button value= 9 class='btn btn-default btn-width' id='btn9'>9</button>
-                <button value= * class='btn btn-default btn-width' id='btnTimes'>*</button><br>
-
-            <!-- Buttons c, 0, =, and / -->
-                <button value= C class='btn btn-default btn-width' id='btnClear'>C</button>
-                <button value= 0 class='btn btn-default btn-width' id='btn0'>0</button>
-                <button value= = class='btn btn-default btn-width' id='btnEquals'>=</button>
-                <button value= / class='btn btn-default btn-width' id='btnDivide'>/</button>
-        </div>
-    </div>
-    </form>
-
-    <script type="text/javascript">
-    'use strict';
-
-    var display1 = '';
-    var display2 = '';
-    var display3 = ''; 
-
-    var btn1 = document.getElementById('btn1');
-    var btn2 = document.getElementById('btn2');
-    var btn3 = document.getElementById('btn3');
-    var btn4 = document.getElementById('btn4');
-    var btn5 = document.getElementById('btn5');
-    var btn6 = document.getElementById('btn6');
-    var btn7 = document.getElementById('btn7');
-    var btn8 = document.getElementById('btn8');
-    var btn9 = document.getElementById('btn9');
-    var btn0 = document.getElementById('btn0');
-    var btnPlus = document.getElementById('btnPlus');
-    var btnMinus = document.getElementById('btnMinus');
-    var btnTimes = document.getElementById('btnTimes');
-    var btnDivide = document.getElementById('btnDivide');
-    var btnClear = document.getElementById('btnClear');
-    var btnEquals= document.getElementById('btnEquals');
-
-    btn1.addEventListener('click', buttonClick, false);
-    btn2.addEventListener('click', buttonClick, false);
-    btn3.addEventListener('click', buttonClick, false);
-    btn4.addEventListener('click', buttonClick, false);
-    btn5.addEventListener('click', buttonClick, false);
-    btn6.addEventListener('click', buttonClick, false);
-    btn7.addEventListener('click', buttonClick, false);
-    btn8.addEventListener('click', buttonClick, false);
-    btn9.addEventListener('click', buttonClick, false);
-    btn0.addEventListener('click', buttonClick, false);
-    btnPlus.addEventListener('click', operate, false);
-    btnMinus.addEventListener('click', operate, false);
-    btnTimes.addEventListener('click', operate, false);
-    btnDivide.addEventListener('click', operate, false);
-    btnClear.addEventListener('click', result, false);
-    btnEquals.addEventListener('click', clearResult, false);
-
-
-    var buttonClick = function (event) {
-        if(document.getElementById('display2').value == '') {
-            display1 += this.value;
-            document.getElementById('display1').value = display1;
-        } else {
-            display3 += this.value;
-            document.getElementById('display3').value = display3;
-        }
-    };
-
-    var operate = function (event) {
-        operation = document.getElementById('display2').value = this.value;
-    };
-
-    var result = function () {
-        answer = eval(display1 + display2 + display3)
-        document.getElementById('display1').value = answer;
-        document.getElementById('display2').value = '';
-        document.getElementById('display3').value = '';
-        display3= '';
-        display1= answer;
-    };
-
-    var clearResult = function () {
-        document.getElementById('form').reset();
-    };
-
-    
-        
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    </script>
-
+    </main> 
+    <script type="text/javascript" src="/js/calculator.js"></script>
 </body>
 </html>

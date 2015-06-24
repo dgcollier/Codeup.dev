@@ -179,12 +179,12 @@
             leftInput = answer;
         }
          var clearResult = function(){
-            // document.getElementById('left_operand').value = "";
-            // document.getElementById('right_operand').value = "";
-            // document.getElementById('middle_operator').value = "";
+            document.getElementById('left_operand').value = "";
+            document.getElementById('right_operand').value = "";
+            document.getElementById('middle_operator').value = "";
             // document.getElementById('resultBubble').value = "";
-            // // window.location.reload();
-             document.getElementById('form').reset();
+            window.location.reload();
+            document.getElementById('form').reset();
         }
         btn1.addEventListener('click', buttonClick, false);
         btn2.addEventListener('click', buttonClick, false);

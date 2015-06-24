@@ -1,0 +1,60 @@
+<html>
+<head>
+  <style type="text/css">
+  #map-canvas {
+    width: 320px;
+    height: 480px;
+  }
+  </style>
+</head>
+<body>
+  <!-- div to hold map -->
+  <div id="map-canvas"></div>
+
+  <!-- Load the Google Maps API [DON'T FORGET TO USE A KEY] -->
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCJ7cHnditOEtoGJvRzB9r2Ll0V_JqHlck"></script>
+
+  <!-- Script to show address on map -->
+  <script type="text/javascript">
+    // Set our map options
+    var mapOptions = {
+      // Set the zoom level
+      zoom: 18,
+      // This sets the center of the map at our location
+      center: { lat: 29.413554, lng: -98.483064 },
+
+      mapTypeId: google.maps.MapTypeId.SATELLITE
+    };
+    // Render the map
+    var map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
+
+    // Set address to be geocod-ed
+    var address = '4 N Weinbach Ave, Evansville, IN, 47711';
+
+    // Initiate geocoder object
+    var geocoder = new google.maps.Geocoder();
+
+    // Geocode Turoni's address
+    geocoder.geocode( {'address': address}, function(results, status){
+        if (status == google.maps.GeocoderStatus.OK) {
+            // Set map options
+            var mapOptions = {
+                // set zoom level
+                zoom: 20,
+                // This sets the center of the map at Turoni's
+                center: results[0].geometry.location,
+                // Show satellite instead of default
+                mapTypeId: google.maps.MapTypeId.SATELLITE
+            }
+            // Render the map
+            var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+        } else {
+            //Show error message with status if request fails
+            alert('Geocoding was not successful - STATUS: ' + status)
+        };
+
+    
+    });
+
+  </script>
+
