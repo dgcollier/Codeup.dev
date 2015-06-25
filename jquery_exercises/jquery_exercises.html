@@ -28,7 +28,37 @@
     <script type="text/javascript">
         "use strict";
         $(document).ready(function() {
-            $("p, h1, li").css("background-color", "yellow");
+            $('h1').click( function () {
+                $(this).css('background-color', '#00C');
+                if ($(this).css('background-color', '#00C')) {
+                    $('h1').click( function () {
+                        $(this).css('background-color', '#FFF');
+                } else {
+                    
+                })
+                }
+            });
+            // $('h1').toggle(
+            //     function () {
+            //         $(this).css('background-color', '#00C');
+            //     },
+            //     function () {
+            //         $(this).css('background-color', '#FFF')
+            //     }
+            // );
+
+            $('p').dblclick( function () {
+                $(this).css('font-size', '18px');1
+            });
+
+            $('li').hover( 
+                function () {
+                    $(this).css('background-color', 'red');
+                },
+                function () {
+                    $(this).css('background-color', 'white');
+                }
+            );
             
         });
     </script>
