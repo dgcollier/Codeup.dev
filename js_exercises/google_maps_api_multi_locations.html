@@ -1,0 +1,67 @@
+<html>
+<head>
+  <style type="text/css">
+  #map-canvas {
+    width: 380px;
+    height: 480px;
+  }
+  </style>
+</head>
+<body>
+    <!-- div to hold map -->
+    <div id="map-canvas"></div>
+
+    <!-- Load the Google Maps API [DON'T FORGET TO USE A KEY] -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCJ7cHnditOEtoGJvRzB9r2Ll0V_JqHlck"></script>
+
+    <!-- Script to show address on map -->
+    <script type="text/javascript">
+    "use strict";
+
+        var locations = [
+            ['Turoni\'s Pizza', 37.977319, -87.529628, 1]
+            ['Vietnamese Cuisine', 37.987967, -87.495109, 2]
+            ['La Cabaña', 37.965235, -87.493127, 3]
+        ]
+        
+        // Set our map options
+        var map = new google.maps.Map(document.getElementById("map-canvas"), {
+            zoom: 10,
+            center: new google.maps.LatLng(37.97, -87.505),
+            mapTypeId: google.maps.MapTypeId.ROADMAP  
+        });
+        
+
+        // var mapOptions = {
+        //   // Set the zoom level
+        //   zoom: 10,
+        //   // This sets the center of the map at our location
+        //   center: { lat: 37.976943, lng: -87.559984 },
+        // };
+
+        // Render the map
+
+        // var marker = new google.maps.Marker({
+        //   position: turonis,
+        //   map: map
+        // });
+
+        var infowindow = new google.maps.InfoWindow();
+        var marker, i;
+
+        for (i=0; i < locations.length; i++){
+            marker = new google.maps.Marker({
+                position: new google.maps.LatLng(locations[i][1], locations[i][2])
+            });
+
+            google.maps.event.addListener(marker, 'click', (function(marker, i) {
+                return function () {
+                    infowindow.setContent(locations[i][0]);
+                    infowindow.open(map, marker);
+                }
+            })(marker, i));
+        }
+
+
+  </script>
+

@@ -1,0 +1,38 @@
+<html>
+<head>
+    <style type="text/css">
+    #map-canvas {
+    width: 380px;
+    height: 480px;
+    }
+    </style>
+</head>
+<body>
+    <h1>Google Maps API Exercise</h1>
+    <div id="map-canvas"></div>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCJ7cHnditOEtoGJvRzB9r2Ll0V_JqHlck"></script>
+    <script type="text/javascript">
+
+        var mapOptions = {
+            zoom: 12,
+            center: { lat: 37.976943, lng: -87.559984 },
+            mapTypeId: google.maps.MapTypeId.HYBRID
+        };
+
+        var map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
+
+        var turonis = { lat: 37.977319, lng: -87.529628 };
+
+        var marker = new google.maps.Marker({
+            position: turonis,
+            map: map
+        });
+
+        var infowindow = new google.maps.InfoWindow({
+            content: 'Turoni\'s Pizza & Brewery'
+        });
+
+        infowindow.open(map,marker);
+
+  </script>
+
