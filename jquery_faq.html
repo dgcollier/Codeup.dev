@@ -1,9 +1,126 @@
 <!DOCTYPE hmtl>
 <html>
 <head>
-    <title></title>
+    <title>National Parks FAQ</title>
+    <meta charset="utf-8">
+
+    <style type="text/css">
+
+        .invisible {
+            display: none;
+        }
+
+        h1,
+        h2 {
+            font-weight: bolder;
+        }
+
+        h2 {
+            font-size: 36px;
+        }
+
+        #nav {
+            background-color: #936a00;
+            padding: 10px;
+            padding-left: 125px;
+            margin-left: -25px;
+            margin-top: -10px;
+            margin-right: -10px;
+            font-size: 30px;
+            border-bottom: 3px solid black;
+        }
+
+        dd,
+        dt {
+            margin-top: 10px;
+            font-size: 22px;
+        }
+
+        dt {
+            font-weight: bold;
+        }
+
+        .answer {
+            font-style: italic;
+            background-color: #936a00;
+        }
+
+        a:active {
+            color: #333;
+            font-size: 18px;
+        }
+
+        a:visited {
+            background-color: #936a00;
+            color: #FFF;
+            font-size: 18px;
+        }
+
+        body {
+            background-color: #607832;
+            font-family: Georgia, serif;
+            margin-bottom: 50px;
+        } 
+
+        #body {
+            margin-left: 100px;
+            margin-top: 75px;
+        }
+
+    </style>
 </head>
 <body>
+    <div id="nav">
+        <h1><span id="h1">National Parks Service</span></h1>
+    </div>
+    <div id="body">
+        <h2>Frequently Asked Questions</h2>
+        <h4><a href="#">Click here to see the answers.</a></h4>
+        <dl>
+            <dt>1. Who is the director of the National Parks Service?</dt>
+            <dd class ="invisible"><span class= "answer">Jonathan B. Jarvis</span></dd>
+
+            <dt>2. What government agency oversees the National Park Service?</dt>
+            <dd class ="invisible"><span class= "answer">The U.S. Department of the Interior</span></dd>
+
+            <dt>3. How many employees are in the National Park Service</dt>
+            <dd class ="invisible"><span class= "answer">22,000 employees and 221,000 volunteers</span></dd>
+
+            <dt>4. How old is the National Park System?</dt>
+            <dd class ="invisible"><span class= "answer">It was created on August 25, 1916.</span></dd>
+
+            <dt>5. What is the origin of the National Park Service arrowhead?</dt>
+            <dd class ="invisible"><span class= "answer">The arrowhead represents historical and archaeological values.</span></dd>
+
+            <dt>6. What is the largest NPS site?</dt>
+            <dd class ="invisible"><span class= "answer">Wrangell-St. Elias National Park and Reserve in AK with 13.2 million acres</span></dd>
+
+            <dt>7. What is the smallest?</dt>
+            <dd class ="invisible"><span class= "answer">Thaddeus Koscuiszko National Memorial in PA with 0.02 acres</span></dd>
+
+            <dt>8. How many people visit national parks?</dt>
+            <dd class ="invisible"><span class= "answer">In 2014, over 290 million people.</span></dd>
+
+            <dt>9. How many areas are there in the NPS system?</dt>
+            <dd class ="invisible"><span class= "answer">There are 407 areas covering over 84 million acres accross each state and several territories.</span></dd>
+
+            <dt>10. Which park was the first in the NPS system?</dt>
+            <dd class ="invisible"><span class= "answer">Yellowstone National Park was established by an act signed by President Grant on March 1, 1872.</span></dd>
+        </dl>
+    </div>
+
+
+    <script src="/js/jquery.js"></script>
+    <script type="text/javascript">
+    "use strict";
+
+    $(document).ready(function (){
+
+        $('h4').click(function (event) {
+            $('dd').toggleClass('invisible');
+        })
+    });
+    </script>
 
 </body>
 </html>
