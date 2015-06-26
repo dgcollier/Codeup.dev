@@ -75,7 +75,7 @@
     </div>
     <div id="body">
         <h2>Frequently Asked Questions</h2>
-        <h4><a href="#">Click here to see the answers.</a></h4>
+        <h4 id="answer"><a href="#">See answers.</a></h4>
         <dl>
             <dt>1. Who is the director of the National Parks Service?</dt>
             <dd class ="invisible"><span class= "answer">Jonathan B. Jarvis</span></dd>
@@ -107,6 +107,29 @@
             <dt>10. Which park was the first in the NPS system?</dt>
             <dd class ="invisible"><span class= "answer">Yellowstone National Park was established by an act signed by President Grant on March 1, 1872.</span></dd>
         </dl>
+
+        <h3>Arches</h3>
+            <ul id="arches">
+                <li>Utah</li>
+                <li>1971</li>
+                <li>43 arches have collapsed since 1977</li>
+                <li>Contains over 2,000 arches</li>
+            </ul>
+        <h3>Big Bend</h3>
+            <ul id="big-bend">
+                <li>Texas</li>
+                <li>1944</li>
+                <li>118 miles along the Rio Grande</li>
+                <li>One of the least-visited National Parks</li>
+            </ul>
+        <h3>Everglades</h3>
+            <ul id="everglades">
+                <li>Florida</li>
+                <li>1934</li>
+                <li>First National Park created to protect an ecosystem</li>
+                <li>Largest tropical wilderness in the US</li>
+            </ul>
+
     </div>
 
 
@@ -116,9 +139,23 @@
 
     $(document).ready(function (){
 
-        $('h4').click(function (event) {
-            $('dd').toggleClass('invisible');
-        })
+        $("#answer").click(function () {
+            event.preventDefault();
+            $("dd").toggleClass("invisible");
+        });
+
+        $("ul").each(function () {
+            $(this).children().first().css("font-weight", "bold");
+        });
+
+        $("li").click(function () {
+            $(this).parent().addClass("invisible");
+        });
+
+        $("h3").click(function () {
+            $(this).next().removeClass("invisible");    
+        });
+
     });
     </script>
 
