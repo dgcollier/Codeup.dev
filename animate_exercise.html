@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Animate</title>
+    <style>
+        html, body {
+            margin: 0px;
+            padding: 0;
+        }
+
+        #btn-animate {
+            margin: 15px;
+        }
+
+        .box {
+            background-color: #000033;
+            height: 250px;
+            margin: 15px;
+            position: relative;
+            width: 250px;
+        }
+    </style>
+</head>
+<body>
+
+    <p>
+        <button id="btn-move">Move It</button>
+
+        <button id="btn-scale-up">Scale It</button>
+
+        <button id="btn-disappear">Disappear It</button>
+
+        <button id="btn-show">Show It</button>
+
+        <button id="btn-all">Animate all</button>
+    </p>
+
+    <div id="animate-box" class="box"></div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script>
+
+        (function(){
+
+            'use strict';
+
+            $(document).ready(function() {
+
+                // Move the box
+                $("#btn-move").click(function () {
+                    $("#animate-box").animate({
+                        left: "+=100",
+                        top: "+=100",
+                    },1000);
+                    $("#animate-box").animate({
+                        left: "+=100",
+                        top: "-=100",
+                    },2000);
+                    $("#animate-box").animate({
+                        left: "+=100",
+                        top: "+=100",
+                    },1000);
+                });
+
+                // Scale the box
+                $("#btn-scale-up").click(function () {
+                    $("#animate-box").animate({
+                        width: "375px",
+                    }, 2000)
+                });
+
+                // 'Disappear' the box
+                $("#btn-disappear").click(function () {
+                    $("#animate-box").animate({
+                        opacity: 0,
+                    }, 2000)
+                });
+
+                // Show the box
+                $("#btn-show").click(function () {
+                    $("#animate-box").animate({
+                        opacity: 100,
+                    }, 2000)
+                });
+
+                // Chained animations
+                $("#btn-all").click(function () {
+                    $("#animate-box").animate({
+                        left: "+=100",
+                        width: "375px",
+                        opacity: "toggle",
+                    }, 2000)
+                });
+            });
+        })();
+    
+    </script>
+</body>
+</html>
