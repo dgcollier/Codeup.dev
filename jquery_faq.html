@@ -151,15 +151,15 @@
         $(".answer").each(function () {
             $(this).click(function () {
                 event.preventDefault();
-                $(this).toggle();
-                $(this).next().fadeToggle(2500, "swing");
+                $(this).slideToggle(2500);
+                $(this).next().slideToggle(2500, "swing");
             });
         });
 
         $("dd").each(function () {
             $(this).click(function () {
-                $(this).toggle();
-                $(this).prev().toggle();
+                $(this).slideToggle(1100);
+                $(this).prev().slideToggle(1100);
             });
         });
 
@@ -168,7 +168,7 @@
         });
 
         $("h3").click(function () {
-            $(this).next().children().fadeToggle(1500, "swing");    
+            $(this).next().slideToggle(1500, "swing");    
         });
 
     });
