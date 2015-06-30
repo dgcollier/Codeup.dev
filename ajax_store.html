@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Online Store</title>
+    <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/ajax_store.css">
+</head>
+<body>
+<div id="container">
+    <h1>My Tool Store</h1>
+
+    <table id="products">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Quantity</th>
+            <th>Price</th>
+            <th>Categories</th>
+        </tr>
+    </thead>
+    <tbody id="insertProducts"></tbody>
+    </table>
+</div>
+
+<button id="refresh" class="btn-warning">Refresh</button>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+
+<script>
+"use strict";
+(function() {
+
+    updateInventory();
+
+    function updateInventory() {
+
+    var ajaxRequest = $.ajax("/data/inventory.json");
+
+    ajaxRequest.always(function () {
+        console.log("Request sent!")
+    });
+
+    ajaxRequest.fail(function (jqxhr, error) {
+        alert("Request failed")
+        console.log(error);
+    });
+
+    var inventory;
+    ajaxRequest.done(function (data) {
+        for (var i = 0; i < data.length; i++) {
+            inventory = $("<tr/>");
+            inventory.append("<td>" + data[i].title + "</td>");
+            inventory.append("<td>" + data[i].quantity + "</td>");
+            inventory.append("<td>" + data[i].price + "</td>");
+            inventory.append("<td>" + data[i].categories + "</td>");
+            $("table").append(inventory);
+        }
+        console.log("Request complete.");
+        console.log(data);
+    });
+    }
+
+    $("#refresh").click(function () {
+        $("#insertProducts").html("");
+        updateInventory();
+    });
+})();
+</script>
+
+</body>
+</html>

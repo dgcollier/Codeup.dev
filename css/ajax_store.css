@@ -1,0 +1,23 @@
+body {
+    margin-left: 50px;
+    margin-top: 50px;
+}
+
+td,
+th {
+    padding: 6px;
+    padding-right: 20px;
+}
+
+tr {
+    margin-top: 3px;
+    border: 1px solid black;
+}
+
+button {
+    margin-top: 15px;
+    clear: left;
+}
+
+#container > h1 {
+}

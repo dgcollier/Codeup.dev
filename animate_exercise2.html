@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Animate</title>
+    <link rel="stylesheet" type="text/css" href="/css/bootstrap.css">
+    <style>
+        html, body {
+            margin: 0px;
+            padding: 0;
+        }
+
+        h1,
+        #btn-animate {
+            margin: 15px;
+            text-align: center;
+
+        }
+
+        .bike {
+            height: 250px;
+            margin: 15px;
+            position: relative;
+            top: 370px;
+            width: 345px;
+            padding-top: 50px;
+        }
+
+    </style>
+</head>
+<body>
+
+    <h1>Road Bike Madness</h1>
+
+    <p id="btn-animate">
+        <button class="btn-info" id="btn-move-right">Right</button>
+
+        <button class="btn-info" id="btn-move-left">Left</button>
+
+        <button class="btn-info" id="btn-move-up">Up</button>
+
+        <button class="btn-info" id="btn-move-down">Down</button>
+
+        <button class="btn-info" id="btn-grow">Grow</button>
+
+        <button class="btn-info" id="btn-shrink">Shrink</button>        
+
+        <button class="btn-info" id="btn-vanish">Vanish</button>
+
+        <button class="btn-info" id="btn-wheelie">Wheelie</button>
+
+        <button class="btn-info" id="btn-ground">Get Level</button>        
+
+    </p>
+
+    <div id="animate-bike" class="bike"><img src="/img/bike.png" id="png"></div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script src="/js/jquery_rotate.js"></script>
+    <script>
+
+        (function(){
+
+            "use strict";
+
+            $(document).ready(function() {
+
+                //MOVE BIKE RIGHT
+                $("#btn-move-right").click(function () {
+                    $("#animate-bike").animate({
+                        left: "+=100",
+                    }, 200);
+                });
+
+                //MOVE BIKE LEFT
+                $("#btn-move-left").click(function () {
+                    $("#animate-bike").animate({
+                        left: "-=100",
+                    }, 200);
+                });
+
+                //MOVE BIKE UP
+                $("#btn-move-up").click(function () {
+                    $("#animate-bike").animate({
+                        top: "-=50",
+                    }, 200);
+                });
+
+                //MOVE BIKE DOWN
+                $("#btn-move-down").click(function () {
+                    $("#animate-bike").animate({
+                        top: "+=50",
+                    }, 200);
+                });
+
+                //GROW BIKE
+                $("#btn-grow").click(function () {
+                    $("#png").animate({
+                        width: "+=15%",
+                        height: "+=15%",
+                    }, 200);
+                });
+
+                //SHRINK BIKE
+                $("#btn-shrink").click(function () {
+                    $("#png").animate({
+                        width: "-=10%",
+                        height: "-=10%",
+                    }, 200);
+                });
+
+                //VANISH & REAPPEAR BIKE
+                $("#btn-vanish").click(function () {
+                    $("#animate-bike").fadeToggle(1600);
+
+                    if ($(this).text() === "Vanish") {
+                        $(this).text("Show");
+                    } else {
+                        $(this).text("Vanish");
+                    }
+                });
+
+                //WHEELIE & RE-ENABLE LEVEL BUTTON
+                $("#btn-wheelie").click(function () {
+                    $("#png").rotateLeft(45);
+                    $("#animate-bike").animate({
+                        top: "-=170",
+                        left: "-=90",
+                    }, 0);
+                    $("#btn-wheelie").attr("disabled", true);
+                    $("#btn-ground").attr("disabled", false);
+                });
+
+                //GROUND & RE-ENABLE WHEELIE BUTTON
+                $("#btn-ground").click(function () {
+                    $("#png").rotateRight(45);
+                    $("#animate-bike").animate({
+                        top: "+=170",
+                        left: "+=90",
+                    }, 0);
+                    $("#btn-ground").attr("disabled", true);
+                    $("#btn-wheelie").attr("disabled", false);
+                });
+
+            });
+        })();
+    
+    </script>
+</body>
+</html>
