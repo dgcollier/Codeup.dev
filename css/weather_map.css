@@ -1,0 +1,30 @@
+.well {
+    margin-left: 60px;
+    background-color: white;
+    border: 1px solid black;
+    text-align: center;
+}
+
+#day1,
+#day2 {
+    margin-left: 120px;
+}
+
+.boldIt {
+    font-weight: bold;
+}
+
+h1,
+#locationField {
+    margin: 30px;
+    margin-left: 60px;
+}
+
+body {
+    background-color: #BFD4FF;
+}
+
+#map-canvas {
+    width: 1276px;
+    height: 860px;
+}

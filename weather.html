@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Weather API Example</title>
+</head>
+<body>
+    <h1>Weather Example</h1>
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript">
+    "use strict";
+
+        var ajaxRequest = $.get("http://api.openweathermap.org/data/2.5/weather", {
+        APPID: "4db5982555b1e564f4d71a35e9eb2b57",
+        id:     "4887398",
+        units: "imperial"
+        });
+
+        ajaxRequest.always(function () {
+            console.log("Request sent.");
+        });
+
+        ajaxRequest.fail(function(data, error) {
+            console.log(error);
+            console.log(ajaxRequest.status);
+        });
+
+        ajaxRequest.done(function (data) {
+            console.log(data);
+        });
+    </script>
+
+</body>
+</html>

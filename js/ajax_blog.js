@@ -1,9 +1,9 @@
 "use strict";
     (function() {
 
-        addPost();
+        getAllPosts();
 
-        function addPost() {
+        function getAllPosts() {
         
             var ajaxRequest = $.ajax("/data/blog.json");
 
@@ -46,8 +46,12 @@
 
             if($(this).text() === "Add New Post") {
                 $(this).text("Cancel");
+                $(this).removeClass("btn-md");
+                $(this).addClass("btn-sm");
             } else {
                 $(this).text("Add New Post");
+                $(this).removeClass("btn-sm");
+                $(this).addClass("btn-md");
             }
         });
 
