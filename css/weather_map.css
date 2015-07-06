@@ -5,6 +5,10 @@
     text-align: center;
 }
 
+#day0 {
+    clear: left;
+}
+
 #day1,
 #day2 {
     margin-left: 120px;
@@ -16,8 +20,9 @@
 
 h1,
 #locationField {
-    margin: 30px;
+    margin: 20px;
     margin-left: 60px;
+    text-align: center;
 }
 
 body {
@@ -26,5 +31,5 @@ body {
 
 #map-canvas {
     width: 1276px;
-    height: 860px;
+    height: 400px;
 }
