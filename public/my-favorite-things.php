@@ -54,11 +54,11 @@ $favThings = ["Puppies", "College Football", "Coffee", "Sleep", "Coding"];
 
     <table id="table">
         <tbody>
-            <?php $i = 0; ?>
-            <?php foreach ($favThings as $thing) { ?>
-                <?php $i++; ?>
+            <?php $i = 0;
+            foreach ($favThings as $thing) {
+                $i++;
 
-                <?php if ($i % 2 == 0) { ?>
+                if ($i % 2 == 0) { ?>
                     <tr class="even">
                         <td class="thing"><?php echo $thing ?></td>
                     </tr>
@@ -66,8 +66,8 @@ $favThings = ["Puppies", "College Football", "Coffee", "Sleep", "Coding"];
                     <tr class="odd">
                         <td class="thing"><?php echo $thing ?></td>
                     </tr>
-                <?php } ?>
-            <?php } ?>
+                <?php }
+            } ?>
         </tbody>
     </table>
 
