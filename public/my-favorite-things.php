@@ -74,7 +74,7 @@ $i = 0;
                         <td class="thing"><?= $thing ?></td>
                     </tr>
                 <? }
-            endforeach ?>
+            endforeach; ?>
         </tbody>
     </table>
 
