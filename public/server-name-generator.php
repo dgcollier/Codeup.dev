@@ -1,7 +1,7 @@
 <?php 
 
-$adjectives = ['vivacious', 'merciful', 'secretive', 'quiet', 'callous', 'classy', 'aromatic', 'ambiguous', 'zesty', 'wise'];
-$nouns = ['mango', 'bee', 'cloud', 'cowboy', 'football', 'shark', 'war', 'cracker', 'gazelle', 'freckle'];
+$adjectives = ['vivacious', 'merciful', 'secretive', 'quiet', 'callous', 'classy', 'aromatic', 'ambiguous', 'zesty', 'wise', 'grotesque', 'bumpy', 'brutal', 'fearsome', 'wonky', 'cheeky', 'light', 'soggy', 'coarse', 'shiny'];
+$nouns = ['mango', 'bee', 'cloud', 'cowboy', 'football', 'shark', 'war', 'cracker', 'gazelle', 'freckle', 'teeth', 'plane', 'octagon', 'bulldozer', 'bamboo', 'turnip', 'college', 'octave', 'promotion', 'sloth'];
 
 $randAdj = array_rand($adjectives, 1);
 $randNoun = array_rand($nouns, 1);
@@ -28,7 +28,6 @@ $randNoun = array_rand($nouns, 1);
     </style>
 
     <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
-    <script type="text/javascript" src="/js/jquery.js"></script>
 
 </head>
 <body>
