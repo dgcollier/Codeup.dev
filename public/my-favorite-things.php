@@ -1,7 +1,14 @@
-<?php 
+<? 
 
-$favThings = ["Puppies", "College Football", "Coffee", "Sleep", "Coding"];
+$favThings = [
+    "Puppies", 
+    "College Football", 
+    "Coffee", 
+    "Sleep", 
+    "Coding"
+];
 
+$i = 0;
 ?>
 
 <!DOCTYPE hmtl>
@@ -54,20 +61,20 @@ $favThings = ["Puppies", "College Football", "Coffee", "Sleep", "Coding"];
 
     <table id="table">
         <tbody>
-            <?php $i = 0;
-            foreach ($favThings as $thing) {
+            
+            <? foreach ($favThings as $thing):
                 $i++;
 
                 if ($i % 2 == 0) { ?>
                     <tr class="even">
-                        <td class="thing"><?php echo $thing ?></td>
+                        <td class="thing"><?= $thing ?></td>
                     </tr>
-                <?php } else {  ?>
+                <? } else {  ?>
                     <tr class="odd">
-                        <td class="thing"><?php echo $thing ?></td>
+                        <td class="thing"><?= $thing ?></td>
                     </tr>
-                <?php }
-            } ?>
+                <? }
+            endforeach ?>
         </tbody>
     </table>
 
