@@ -99,6 +99,7 @@ extract(pageController());
 
         #server-name {
             margin-top: 50px;
+            text-shadow: 3px 5px #ECF0F1;
         }
 
         .btn {
