@@ -1,14 +1,22 @@
 <? 
+function pageController()
+{
+    $data = [];
 
-$favThings = [
-    "Puppies", 
-    "College Football", 
-    "Coffee", 
-    "Sleep", 
-    "Coding"
-];
+    $data['favThings'] = [
+        "Puppies", 
+        "College Football", 
+        "Coffee", 
+        "Sleep", 
+        "Coding"
+    ];
 
-$i = 0;
+    $data['i'] = 0;
+
+    return $data;
+}
+
+extract(pageController());
 ?>
 
 <!DOCTYPE hmtl>
@@ -67,11 +75,11 @@ $i = 0;
 
                 if ($i % 2 == 0) { ?>
                     <tr class="even">
-                        <td class="thing"><?= $thing ?></td>
+                        <td class="thing"><?= $thing; ?></td>
                     </tr>
                 <? } else {  ?>
                     <tr class="odd">
-                        <td class="thing"><?= $thing ?></td>
+                        <td class="thing"><?= $thing; ?></td>
                     </tr>
                 <? }
             endforeach; ?>

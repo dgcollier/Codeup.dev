@@ -1,84 +1,90 @@
 <?
+function pageController ()
+{
+    $data = [];
+    $data['adjectives'] = [
+        'aggressive', 
+        'agile', 
+        'alert', 
+        'animated', 
+        'bold', 
+        'brave', 
+        'daring', 
+        'determined', 
+        'dynamic', 
+        'grotesque', 
+        'eager', 
+        'brutal', 
+        'fearsome', 
+        'wonky', 
+        'cheeky', 
+        'nimble', 
+        'intense', 
+        'quick', 
+        'shiny',
+        'nervous',
+        'electrifying',
+        'thrilling',
+        'victorious',
+        'confident',
+        'competitive',
+        'unproven',
+        'young',
+        'shaky',
+        'flawless',
+        'exciting',
+        'physical',
+        'tough'
+    ];
 
-$adjectives = [
-    'aggressive', 
-    'agile', 
-    'alert', 
-    'animated', 
-    'bold', 
-    'brave', 
-    'daring', 
-    'determined', 
-    'dynamic', 
-    'grotesque', 
-    'eager', 
-    'brutal', 
-    'fearsome', 
-    'wonky', 
-    'cheeky', 
-    'nimble', 
-    'intense', 
-    'quick', 
-    'shiny',
-    'nervous',
-    'electrifying',
-    'thrilling',
-    'victorious',
-    'confident',
-    'competitive',
-    'unproven',
-    'young',
-    'shaky',
-    'flawless',
-    'exciting',
-    'physical',
-    'tough'
-];
+    $data['nouns'] = [
+        'Longhorn', 
+        'Sooner', 
+        'Horned_Frog', 
+        'Cowboy', 
+        'Bear', 
+        'Red_Raider', 
+        'Cougar', 
+        'Mustang', 
+        'Wildcat', 
+        'Jayhawk', 
+        'Cyclone', 
+        'Tide',
+        'Mountaineer', 
+        'Gator', 
+        'Tiger', 
+        'Volunteer', 
+        'Bulldog', 
+        'Razorback', 
+        'Commodore',
+        'Rebel',
+        'Hawkeye',
+        'Buckeye',
+        'Cornhusker',
+        'Spartan',
+        'Lion',
+        'Turtle',
+        'Badger',
+        'Knight',
+        'Wolverine',
+        'Gopher',
+        'Husky',
+        'Devil',
+        'Trojan',
+        'Buffalo',
+        'Duck',
+        'Beaver',
+        'Cardinal',
+        'Bronco'
+    ];
 
-$nouns = [
-    'Longhorn', 
-    'Sooner', 
-    'Horned_Frog', 
-    'Cowboy', 
-    'Bear', 
-    'Red_Raider', 
-    'Cougar', 
-    'Mustang', 
-    'Wildcat', 
-    'Jayhawk', 
-    'Cyclone', 
-    'Tide',
-    'Mountaineer', 
-    'Gator', 
-    'Tiger', 
-    'Volunteer', 
-    'Bulldog', 
-    'Razorback', 
-    'Commodore',
-    'Rebel',
-    'Hawkeye',
-    'Buckeye',
-    'Cornhusker',
-    'Spartan',
-    'Lion',
-    'Turtle',
-    'Badger',
-    'Knight',
-    'Wolverine',
-    'Gopher',
-    'Husky',
-    'Devil',
-    'Trojan',
-    'Buffalo',
-    'Duck',
-    'Beaver',
-    'Cardinal',
-    'Bronco'
-];
+    $data['randAdj'] = array_rand($data['adjectives'], 1);
+    $data['randNoun'] = array_rand($data['nouns'], 1);
 
-$randAdj = array_rand($adjectives, 1);
-$randNoun = array_rand($nouns, 1);
+    return $data;
+}
 
+extract(pageController());
 ?>
 
 <!DOCTYPE hmtl>
@@ -109,7 +115,7 @@ $randNoun = array_rand($nouns, 1);
         <h1>Your Random Server Name:</h1>
     </div>
 
-    <h2 id="server-name"><?= $adjectives[$randAdj] . '_' . $nouns[$randNoun] ?></h2>
+    <h2 id="server-name"><?= $adjectives[$randAdj] . '_' . $nouns[$randNoun]; ?></h2>
 
     <button id="new" class="btn btn-lg">Select New</button>
 
