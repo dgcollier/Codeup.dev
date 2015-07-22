@@ -6,10 +6,10 @@ function pageController()
 {
     $data = [];
     
-    if(empty($_GET['counter'])) {
+    if(empty($_GET['count'])) {
         $counter = 0;
     } else {
-        $counter = $_GET['counter'];
+        $counter = $_GET['count'];
     }
 
     $data['counter'] = $counter;
@@ -36,12 +36,11 @@ extract(pageController());
     <h1>Counter:</h1>
     <h2><?= $counter; ?></h2>
  
-    <a href="?counter=<?= $counter+1; ?>">
+    <a href="?count=<?= $counter+1; ?>">
         <button id="up" class="btn btn-lg">Up</button>
     </a>
- 
 
-    <a href="?counter=<?= $counter-1; ?>">
+    <a href="?count=<?= $counter-1; ?>">
         <button id="down" class="btn btn-lg">Down</button>  
     </a>
     
