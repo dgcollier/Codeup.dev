@@ -74,11 +74,11 @@
 </head>
 <body>
     <h1>PONG</h1>
-    <a href="http://codeup.dev/ping.php?hit=<?=true?>&score=<?= $score; ?>">
+    <a href="/ping.php?hit=<?=true?>&score=<?= $score; ?>">
         <button id="hitBtn" class="btn btn-lg"><?= $hitBtn; ?></button>
     </a>
 
-    <a href="http://codeup.dev/ping.php?hit=<?=false?>&score=<?= $score; ?>">
+    <a href="/ping.php?hit=<?=false?>&score=<?= $score; ?>">
         <button id="miss" class="btn btn-lg">MISS</button>  
     </a>
     <h4><?= $text ?></h4>
