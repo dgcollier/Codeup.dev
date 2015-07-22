@@ -64,7 +64,7 @@
             border-radius: 100%;
             width: 75px;
             height: 75px;
-            margin-right: 200px;
+            margin-left: 200px;
             margin-top: 50px;
             float: left;
             border: solid #A09D8E 2px;
