@@ -1,20 +1,24 @@
 <?php  
+    session_start();
+    $sessionId = session_id();
+
     var_dump($_POST);
+    var_dump($sessionId);
 
     $user = isset($_POST['username']) ? $_POST['username'] : '';
     $pass = isset($_POST['password']) ? $_POST['password'] : '';
-    $submit = 'submit';
 
     if (!empty($_POST)) {
         
-        if ($user == 'guest' && $pass = 'password') {
+        if ($user == 'guest' && $pass == 'password') {
+            $_SESSION['LOGGED_IN_USER'] = $user;
             header("location: /authorized.php");
+            exit();
         } else {
             $message = 'Username and password did not match.';
         }
     } else {
         $message = 'Please enter your username and password.';
-        $submit = 'submit';
     }
 
 ?>
