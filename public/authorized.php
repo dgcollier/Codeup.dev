@@ -40,29 +40,28 @@
     </a>
 
     <script type="text/javascript">
-    "use strict";
-    $(document).ready(function() {
+        "use strict";
+        $(document).ready(function() {
 
-        var konami = [38, 38, 40, 40, 37, 39, 37, 39, 66, 65, 13];
-        var keylog = [];
+            var konami = [38, 38, 40, 40, 37, 39, 37, 39, 66, 65, 13];
+            var keylog = [];
 
-        $(document).keydown(function (e){
-            var newContent = keylog.push(e.keyCode);
-            console.log(e.keyCode);
-            // console.log(keylog);
+            $(document).keydown(function (e){
+                var newContent = keylog.push(e.keyCode);
+                console.log(e.keyCode);
+                // console.log(keylog);
 
-            if (keylog.length > konami.length) {
-                keylog.shift();
-            }
+                if (keylog.length > konami.length) {
+                    keylog.shift();
+                }
 
-            if (konami.toString() == keylog.toString()) {
-                $('.konami').css('font-family', 'Courier New');
-                $('body').css('background-color', 'salmon');
-                $('.blue').css('background-color', '#2c3e50');
-            }
+                if (konami.toString() == keylog.toString()) {
+                    $('.konami').css('font-family', 'Courier New');
+                    $('body').css('background-color', 'salmon');
+                    $('.blue').css('background-color', '#2c3e50');
+                }
+            });
         });
-    });
-
     </script>
 
 </body>
