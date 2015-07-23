@@ -2,13 +2,16 @@
     session_start();
     $sessionId = session_id();
 
-    var_dump($_POST);
-    var_dump($sessionId);
+    require 'functions.php';
 
-    $user = isset($_POST['username']) ? $_POST['username'] : '';
-    $pass = isset($_POST['password']) ? $_POST['password'] : '';
+    // var_dump($_POST);
+    // var_dump($sessionId);
 
-    if (!empty($_POST)) {
+    $user = inputHas('username') ? inputGet('username') : '';
+    $pass = inputHas('password') ? inputGet('password') : '';
+
+
+    if (inputHas('username') && inputHas('password')) {
         if ($user == 'guest' && $pass == 'password') {
             $_SESSION['LOGGED_IN_USER'] = $user;
             header("location: /authorized.php");
@@ -46,7 +49,7 @@
             <h1>Codeup.dev Login</h1>
         </div>
         <p><?= $message; ?></p>
-        <input class="input" type="text" name="username" placeholder="Username">
+        <input class="input" type="text" name="username" placeholder="Username" autofocus>
         <input class="input" type="password" name="password" placeholder="Password">
         <input type="submit" class="btn">
 

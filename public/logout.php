@@ -3,6 +3,8 @@
 session_start();
 $sessionId = session_id();
 
+require 'functions.php';
+
 endSession();
 header("location: /login.php");
 exit();   
