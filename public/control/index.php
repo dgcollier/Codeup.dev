@@ -1,8 +1,6 @@
 <?php 
     $heading = 'This is the homepage.';
     $footing = 'This is the footer.';
-
-
 ?>
 
 <!DOCTYPE html>
@@ -37,8 +35,8 @@
     </style>
 </head>
 <body>
-    <?php include 'navbar.php' ?>
-    <?php include 'header.php' ?>
+    <?php include 'navbar.php'; ?>
+    <?php include 'header.php'; ?>
 
     <h3>Available Links</h3>
         <ul>
