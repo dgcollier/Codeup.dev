@@ -2,7 +2,7 @@
     session_start();
     $sessionId = session_id();
 
-    require 'functions.php';
+    require_once 'functions.php';
 
     // var_dump($_POST);
     // var_dump($sessionId);

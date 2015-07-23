@@ -3,7 +3,7 @@
     session_start();
     $sessionId = session_id();
 
-    require 'functions.php';
+    require_once 'functions.php';
 
     if (empty($_SESSION['LOGGED_IN_USER'])) {
         header("location: /login.php");
