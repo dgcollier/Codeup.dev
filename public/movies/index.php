@@ -3,32 +3,18 @@
     session_start();
     $sessionId = session_id();
 
-    var_dump($_POST);
+    print_r($sessionId);
 
-    function pageController()
-    {
-        $title = isset($_POST['title']) ? $_POST['title'] : '';
-        $descr = isset($_POST['descr']) ? $_POST['descr'] : '';
+    $title = isset($_POST['title']) ? $_POST['title'] : '';
+    $descr = isset($_POST['descr']) ? $_POST['descr'] : '';
 
-        $_SESSION['movies'] = array();
+    $qArray = array('title' => $title, 'description' => $descr);
+    // var_dump($qArray);
 
-        $_SESSION['title'] = $title;
-
-        $_SESSION['description'] = $descr;
-
-        $qArray = array('title' => $_SESSION['title'], 'description' => $_SESSION['description']);
-
-        if (!empty($title)) {
-           array_push($_SESSION['movies'], $qArray);
-           var_dump($_SESSION['movies']);        
-        } else {
-            var_dump($_SESSION);
-        }
-
-        $data = [];
-        $data['movies'] = $_SESSION['movies'];
+    if (!empty($title && !empty($descr))) {
+       array_push($_SESSION['movies'], $qArray);
+       // var_dump($_SESSION);        
     }
-
 ?>
 
 <!DOCTYPE html>
@@ -41,19 +27,23 @@
     <form method="POST">
         <input type ="text" name="title" placeholder="Title">
         <input type ="text" name="descr" placeholder="Description">
-        <input type = "submit">
+        <input type ="submit">
     </form>
 
-    <h2>Movies!</h2>
+    <h2>Movie Queue:</h2>
 
-    <ul>
-        <!-- // foreach ($movies as $movie) {
-        //     foreach ($movie as $title) {
-                
-        //     }
-        // } -->
-        <li></li>
-    </ul>
+    <ol>
+        <?foreach ($_SESSION['movies'] as $movie) :?>
+                <li><?= $movie['title'] ?></li>
+           <? endforeach;?>
+    </ol>
+
+    <h3>Remove Item:</h3>
+
+    <form method = "POST">
+        <input type="number" name="remove" placeholder="Item #">
+        <input type ="submit">
+    </form>
 
 </body>
 </html>
