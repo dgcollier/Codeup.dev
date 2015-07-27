@@ -3,10 +3,12 @@
     session_start();
     $sessionId = session_id();
 
+    require_once "../../Input.php";
+
     print_r($sessionId);
 
-    $title = isset($_POST['title']) ? $_POST['title'] : '';
-    $descr = isset($_POST['descr']) ? $_POST['descr'] : '';
+    $title = Input::has('title') ? Input::get('title') : '';
+    $descr = Input::has('descr') ? Input::get('descr') : '';
     // var_dump($title, $descr);
 
     // $_SESSION['movies'] = [];
@@ -16,8 +18,10 @@
 
     if (!empty($title) && !empty($descr)) {
        array_push($_SESSION['movies'], $qArray);
-       var_dump($_SESSION['movies']);        
+       // var_dump($_SESSION['movies']);        
     }
+
+    // $remove = 
 ?>
 
 <!DOCTYPE html>
@@ -41,12 +45,12 @@
            <? endforeach;?>
     </ol>
 
-    <!-- <h3>Remove Item:</h3>
+    <h3>Remove Item:</h3>
 
     <form method = "POST">
-        <input type="number" name="remove" placeholder="Item #">
+        <input type="text" name="remove" placeholder="Item to Remove">
         <input type ="submit">
-    </form> -->
+    </form>
 
 </body>
 </html>
