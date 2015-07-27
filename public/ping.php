@@ -1,29 +1,45 @@
 <?php
 
-    require_once '../functions.php';
+    require_once '../Input.php';
 
     function pageController()
     {
         $data = [];
  
-        if (inputHas('score')) {
-            $score =  $_GET['score'];
+        if (Input::has('scorePong')) {
+            $scorePing =  $_GET['scorePing'];
+            $scorePong = $_GET['scorePong'];
         } else {
-            $score = 0;
-            $hitBtn = 'START';
-        }
-
-        if (inputGet('hit')) {
-            $score++;
-            $hitBtn = 'HIT';
-            $text = 'Hit it again!';
-        } else {
-            $score = 0;
+            $scorePing = 0;
+            $scorePong = 0;
             $hitBtn = 'START';
             $text = "Let's play!";
-        }    
+        }
 
-        $data['score'] = $score;
+        if (Input::get('hit') == 'hit') {
+            $scorePong++;
+            $hitBtn = 'HIT';
+            $text = 'Hit it again!';
+        } else if (Input::get('hit') == 'miss') {
+            $scorePong--;
+            $hitBtn = 'HIT';
+            $text = 'Ping missed!';
+        } 
+        
+        if ($scorePing == 20) {
+            $scorePing = 0;
+            $scorePong = 0;
+            $hitBtn = 'START';
+            $text = "Ping won. Play again!";
+        } else if ($scorePong == 20) {
+            $$scorePing = 0;
+            $scorePong = 0;
+            $hitBtn = 'START';
+            $text = "Ping won. Play again!";
+        }
+
+        $data['scorePing'] = $scorePing;
+        $data['scorePong'] = $scorePong;
         $data['hitBtn'] = $hitBtn;
         $data['text'] = $text;  
 
@@ -42,14 +58,14 @@
 </head>
 <body>
     <h1>PING</h1>
-    <a href="/pong.php?hit=<?=true?>&score=<?= $score; ?>">
+    <a href="/pong.php?hit=<?='hit'?>&scorePing=<?= $scorePing; ?>&scorePong=<?= $scorePong; ?>">
         <button id="hitBtn" class="btn btn-lg"><?= $hitBtn; ?></button>
     </a>
-    <a href="/pong.php?hit=<?=false?>&score=<?= $score; ?>">
+    <a href="/pong.php?hit=<?='miss'?>&scorePing=<?= $scorePing; ?>&scorePong=<?= $scorePong; ?>">
         <button id="miss" class="btn btn-lg">MISS</button>  
     </a>
-    <button id="scorePong" class="btn btn-lg">Pong: <?= $score; ?></button>
-    <button id="scorePing" class="btn btn-lg">Ping: <?= $score; ?></button>
+    <button id="scorePong" class="btn btn-lg">Pong: <?= $scorePong; ?></button>
+    <button id="scorePing" class="btn btn-lg">Ping: <?= $scorePing; ?></button>
     <a href="/ping.php">
         <button id="quit" class="btn btn-lg">Quit</button>  
     </a>
