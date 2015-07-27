@@ -12,11 +12,11 @@ class Auth
     {
         if (self::escape($username == 'guest') && password_verify(self::escape($password), self::$password)) {
             $_SESSION['LOGGED_IN_USER'] = $username;
-            // $log1 = new Log();
-            // $log1-> logInfo("User $username logged in.");
+            $log1 = new Log();
+            $log1->logInfo("User $username logged in.");
         } else {
-            // $log1 = new Log();
-            // $log1->logError("User $username failed to log in.");
+            $log1 = new Log();
+            $log1->logError("User $username failed to log in.");
         }
     }
 

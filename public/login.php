@@ -5,9 +5,6 @@
     require_once '../Input.php';
     require_once '../Auth.php';
 
-    // var_dump($_POST);
-    // var_dump($sessionId);
-
     if (Input::has('username') && Input::has('password')) {
         Auth::attempt(Input::get('username'), Input::get('password'));
         if (!Auth::check()) {
