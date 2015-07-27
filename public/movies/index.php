@@ -7,12 +7,12 @@
 
     $title = isset($_POST['title']) ? $_POST['title'] : '';
     $descr = isset($_POST['descr']) ? $_POST['descr'] : '';
-    var_dump($title, $descr);
+    // var_dump($title, $descr);
 
-    $_SESSION['movies'] = [];
+    // $_SESSION['movies'] = [];
 
     $qArray = array('title' => $title, 'description' => $descr);
-    var_dump($qArray);
+    // var_dump($qArray);
 
     if (!empty($title) && !empty($descr)) {
        array_push($_SESSION['movies'], $qArray);
