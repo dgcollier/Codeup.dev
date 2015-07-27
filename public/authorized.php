@@ -35,9 +35,11 @@
     <h1 class="konami">Authorized</h1>
     <h4 class="konami">Welcome: <?= Auth::user(); ?></h4>
 
-    <a class="konami" href="http://codeup.dev/logout.php">
+    <div><a class="konami" href="http://codeup.dev/logout.php">
         <button class="blue">Log Out</button>
-    </a>
+    </a></div>
+
+    <div class="btn"><a href="http://codeup.dev/movies">Movie Queue</a></div>
 
     <script type="text/javascript">
         "use strict";
