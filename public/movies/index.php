@@ -18,10 +18,16 @@
 
     if (!empty($title) && !empty($descr)) {
        array_push($_SESSION['movies'], $qArray);
-       // var_dump($_SESSION['movies']);        
+       var_dump($_SESSION['movies']);        
     }
 
-    // $remove = 
+    $remove = Input::has('remove') ? (intval(Input::get('remove'))-1) : null;
+
+    // var_dump($remove);
+
+    if ($remove < count($_SESSION['movies'])) {
+        unset($_SESSION['movies'][$remove]);
+    }
 ?>
 
 <!DOCTYPE html>
@@ -48,7 +54,7 @@
     <h3>Remove Item:</h3>
 
     <form method = "POST">
-        <input type="text" name="remove" placeholder="Item to Remove">
+        <input type="text" name="remove" placeholder="Item #">
         <input type ="submit">
     </form>
 
