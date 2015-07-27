@@ -7,13 +7,16 @@
 
     $title = isset($_POST['title']) ? $_POST['title'] : '';
     $descr = isset($_POST['descr']) ? $_POST['descr'] : '';
+    var_dump($title, $descr);
+
+    $_SESSION['movies'] = [];
 
     $qArray = array('title' => $title, 'description' => $descr);
-    // var_dump($qArray);
+    var_dump($qArray);
 
-    if (!empty($title && !empty($descr))) {
+    if (!empty($title) && !empty($descr)) {
        array_push($_SESSION['movies'], $qArray);
-       // var_dump($_SESSION);        
+       var_dump($_SESSION['movies']);        
     }
 ?>
 
@@ -32,18 +35,18 @@
 
     <h2>Movie Queue:</h2>
 
-    <ol>
+    <ul>
         <?foreach ($_SESSION['movies'] as $movie) :?>
                 <li><?= $movie['title'] ?></li>
            <? endforeach;?>
-    </ol>
+    </ul>
 
-    <h3>Remove Item:</h3>
+    <!-- <h3>Remove Item:</h3>
 
     <form method = "POST">
         <input type="number" name="remove" placeholder="Item #">
         <input type ="submit">
-    </form>
+    </form> -->
 
 </body>
 </html>
