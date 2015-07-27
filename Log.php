@@ -22,7 +22,7 @@ class Log
         $message = strtoupper($message);
         fwrite($this->handle, date('Y-m-d') . ' ' . date('H:i:s') . " [{$logLevel}] $message" . PHP_EOL);
 
-        return print_r("Messaged logged." . PHP_EOL);
+        return print_r("Login attempt recorded." . PHP_EOL);
     }
 
     public function logInfo($message)
