@@ -2,22 +2,18 @@
     session_start();
     $sessionId = session_id();
 
-    require_once '../functions.php';
+    require_once '../Input.php';
+    require_once '../Auth.php';
 
     // var_dump($_POST);
     // var_dump($sessionId);
 
-    $user = inputHas('username') ? inputGet('username') : '';
-    $pass = inputHas('password') ? inputGet('password') : '';
-
-
-    if (inputHas('username') && inputHas('password')) {
-        if ($user == 'guest' && $pass == 'password') {
-            $_SESSION['LOGGED_IN_USER'] = $user;
-            header("location: /authorized.php");
-            exit();
-        } else {
+    if (Input::has('username') && Input::has('password')) {
+        Auth::attempt(Input::get('username'), Input::get('password'));
+        if (!Auth::check()) {
             $message = 'Username and password did not match.';
+        } else if (Auth::check()) {
+            Auth::login();
         }
     } else {
         $message = 'Please enter your username and password.';

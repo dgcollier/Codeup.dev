@@ -3,11 +3,11 @@
     session_start();
     $sessionId = session_id();
 
-    require_once '../functions.php';
+    require_once '../Input.php';
+    require_once '../Auth.php';
 
-    if (empty($_SESSION['LOGGED_IN_USER'])) {
-        header("location: /login.php");
-        exit();
+    if (!Auth::check()) {
+        Auth::redirect();
     }
 
 ?>
@@ -33,7 +33,7 @@
 </head>
 <body>
     <h1 class="konami">Authorized</h1>
-    <h4 class="konami">Welcome:     <?= $_SESSION['LOGGED_IN_USER']; ?></h4>
+    <h4 class="konami">Welcome: <?= Auth::user(); ?></h4>
 
     <a class="konami" href="http://codeup.dev/logout.php">
         <button class="blue">Log Out</button>
