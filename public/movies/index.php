@@ -35,11 +35,11 @@
 
     <h2>Movie Queue:</h2>
 
-    <ul>
+    <ol>
         <?foreach ($_SESSION['movies'] as $movie) :?>
-                <li><?= $movie['title'] ?></li>
+                <li><a href="show.php"><?= $movie['title'] ?></a></li>
            <? endforeach;?>
-    </ul>
+    </ol>
 
     <!-- <h3>Remove Item:</h3>
 
