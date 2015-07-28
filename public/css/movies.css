@@ -1,0 +1,32 @@
+body {
+    text-align: left;
+    margin-left: 50px;
+}
+
+form {
+    margin-top: 25px;
+}
+
+#backToIndex {
+    margin-top: 25px;
+    margin-left: 19px;
+}
+
+#clear {
+    margin-top: 25px;
+}
+
+#details {
+    margin-top: 50px;
+    margin-right: 50px;
+}
+
+#showTitle {
+    text-decoration: underline;
+    margin-left: 19px;
+}
+
+#showDescr {
+    margin-left: 19px;
+    font-size: 1.4em;
+}
