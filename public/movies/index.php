@@ -12,23 +12,16 @@
         $_SESSION['view']=1;
     }
 
-    // print_r($_SESSION['view']);
-
     $title = Input::has('title') ? Input::get('title') : '';
     $descr = Input::has('descr') ? Input::get('descr') : '';
-    // var_dump($title, $descr);
 
     $qArray = array('title' => $title, 'description' => $descr);
-    // var_dump($qArray);
 
     if (!empty($title) && !empty($descr)) {
-       array_push($_SESSION['movies'], $qArray);
-       // var_dump($_SESSION['movies']);       
+       array_push($_SESSION['movies'], $qArray);      
     }
 
     $remove = Input::has('remove') ? (intval(Input::get('remove'))-1) : null;
-
-    // var_dump($remove);
 
     if ($remove < count($_SESSION['movies'])) {
         unset($_SESSION['movies'][$remove]);
@@ -46,30 +39,30 @@
 </head>
 <body>
 
-    <h2>Add Item:</h2>
-
     <form method="POST">
+        <span>Add Item:</span>
         <input type ="text" name="title" placeholder="Title">
         <input type ="text" name="descr" placeholder="Description">
         <input type ="submit" value="Add">
     </form>
 
-    <h1>Movie Queue:</h1>
+    <h1 class="well">Movie Queue:</h1>
 
     <ol>
         <?foreach ($_SESSION['movies'] as $movie) :?>
-                <li><a href="show.php"><?= $movie['title'] ?></a></li>
+                <li><a href="/movies/show.php?title=<?= $movie['title'] ?>&descr=<?= $movie['description'] ?>"><?= $movie['title'] ?></a></li>
            <? endforeach;?>
     </ol>
 
-    <h3>Remove Item:</h3>
+    <footer>
+        <form method = "POST">
+            <span>Remove Item:</span>
+            <input type="text" name="remove" placeholder="Item #">
+            <input type ="submit" value="Remove">
+        </form>
 
-    <form method = "POST">
-        <input type="text" name="remove" placeholder="Item #">
-        <input type ="submit" value="Remove">
-    </form>
-
-    <div><input id="clear" type="submit" value="CLEAR"></div>
+        <span><input id="clear" type="submit" value="CLEAR"></span>
+    </footer>
 
     <script type="text/javascript">
     "use strict";
