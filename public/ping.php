@@ -7,8 +7,8 @@
         $data = [];
  
         if (Input::has('scorePong')) {
-            $scorePing =  $_GET['scorePing'];
-            $scorePong = $_GET['scorePong'];
+            $scorePing =  Input::get('scorePing');
+            $scorePong = Input::get('scorePong');
         } else {
             $scorePing = 0;
             $scorePong = 0;
