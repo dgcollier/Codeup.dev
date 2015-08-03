@@ -1,13 +1,9 @@
 <?php
 
-    define("DB_HOST", '127.0.0.1');
-    define("DB_NAME", 'parks_db');
-    define("DB_USER", 'parks_user');
-    define("DB_PASS", '');
+    require_once 'parks_config.php'; //configs for db
+    require_once 'db_connect.php'; //db connection
 
-    require_once 'db_connect.php';
-
-    echo $dbc->getAttribute(PDO::ATTR_CONNECTION_STATUS) . "\n";
+    echo $dbc->getAttribute(PDO::ATTR_CONNECTION_STATUS) . PHP_EOL;
 
     $truncate = 'TRUNCATE national_parks';
 
