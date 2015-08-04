@@ -1,6 +1,6 @@
 <?php
 
-    require_once 'parks_config';
+    require_once 'parks_config.php';
     require_once 'db_connect.php';
 
     echo $dbc->getAttribute(PDO::ATTR_CONNECTION_STATUS) . PHP_EOL;
@@ -14,7 +14,8 @@
         name VARCHAR(20) NOT NULL,
         location VARCHAR(30) NOT NULL,
         date_established DATE NOT NULL,
-        area_in_acres DOUBLE NOT NULL,
+        area_in_acres DOUBLE(10,2) NOT NULL,
+        description TEXT,
         PRIMARY KEY (id))";
 
     $dbc->exec($addTable);
