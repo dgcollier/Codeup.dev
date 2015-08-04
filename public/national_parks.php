@@ -47,14 +47,16 @@
 
 
     // DB query
-    $stmt = $dbc->query(
-        "SELECT name, location, date_established, area_in_acres 
+    $stmt = $dbc->prepare(
+        "SELECT name, location, date_established, area_in_acres, description 
         FROM national_parks 
         ORDER BY " . $orderBy .
         ' LIMIT '. ($page - 1) * $parksPerPage . ', ' . $parksPerPage
     );
 
+    $stmt->execute();
     $parks = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    // print_r($parks);
 
 
     // Change $_GET with button click
@@ -126,6 +128,7 @@
                 <th>Location</th>
                 <th>Established</th>
                 <th>Area (acres)</th>
+                <th>Description</th>
             </tr>
 
             <? foreach ($parks as $park): ?>
@@ -134,6 +137,7 @@
                 <td><?= $park['location'] ?></td>
                 <td><?= $park['date_established'] ?></td>
                 <td><?= $park['area_in_acres'] ?></td>
+                <td><?= $park['description'] ?></td>
             </tr>
             <? endforeach; ?>
         </table>
