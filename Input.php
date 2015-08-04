@@ -31,7 +31,7 @@ class Input
         if (empty($_REQUEST[$key])) {
             return $default;
         } else {
-            return $_REQUEST[$key];
+            return htmlspecialchars(strip_tags($_REQUEST[$key]));
         }
     }
 
