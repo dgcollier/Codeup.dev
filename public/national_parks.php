@@ -1,5 +1,7 @@
 <?php 
-    
+    session_start();
+    $sessionId = session_id();
+
     require_once "../Input.php";
     require_once "../parks_config.php";
     require_once "../db_connect.php";
@@ -46,9 +48,9 @@
 
     // DB query
     $stmt = $dbc->query(
-        'SELECT name, location, date_established, area_in_acres 
+        "SELECT name, location, date_established, area_in_acres 
         FROM national_parks 
-        ORDER BY ' . $orderBy .
+        ORDER BY " . $orderBy .
         ' LIMIT '. ($page - 1) * $parksPerPage . ', ' . $parksPerPage
     );
 
@@ -137,10 +139,10 @@
         </table>
 
         <div id="paginators">
-            <a class="pager" href="?page=<?= $pageDown ?>">
+            <a class="pager" href="?page=<?= $pageDown ?>&order=<?= $orderBy ?>">
                 <button class="<?= $prev ?>">Prev.</button>
             </a>
-            <a class="pager" href="?page=<?= $pageUp ?>">
+            <a class="pager" href="?page=<?= $pageUp ?>&order=<?= $orderBy ?>">
                 <button class="<?= $next ?>">Next</button>
             </a>
         </div>
