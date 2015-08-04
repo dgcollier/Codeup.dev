@@ -31,7 +31,7 @@
 
 
     // Pagination control & calculation
-    $parksPerPage = 4;
+    $parksPerPage = 4; // fix this ???
     $stmt = $dbc->prepare('SELECT COUNT(*) FROM national_parks');
     $stmt->execute();
     $totalParks = $stmt->fetchColumn();
@@ -45,7 +45,7 @@
         $page = 1;
     }
 
-
+        // stopped working after inserted prepare() methods
     // Dynamic 'ORDER BY' query
     // if(Input::has('order')) {
     //     $order = Input::get('order');
@@ -82,6 +82,7 @@
         // $stmt->bindValue(':myOrder', $orderBy, PDO::PARAM_STR);
         // -- ORDER BY :myOrder 
 
+
     // Execute DB query, store array in $parks
     $stmt->execute();
     $parks = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -114,6 +115,10 @@
         a,
         form {
             text-align: center;
+        }
+
+        body {
+            background-image: url("../img/yosemite.jpg");
         }
 
         td {
@@ -171,6 +176,10 @@
             margin-right: 10px;
         }*/
 
+        #parkForm > h2 {
+            color: #f5f5f5;
+        }
+
         #prev {
             float: left;
             margin-left: 12.5%;
@@ -181,8 +190,8 @@
     <div class="body">
         <h1 id="natParks">National Parks</h1>
 
-        <table class="table table-striped">
-            <tr>
+        <table class="table">
+            <tr class="active">
                 <th>Name</th>
                 <th>Location</th>
                 <th>Established</th>
@@ -191,7 +200,7 @@
             </tr>
 
             <? foreach ($parks as $park): ?>
-            <tr>
+            <tr class="success">
                 <td><?= $park['name'] ?></td>
                 <td><?= $park['location'] ?></td>
 
@@ -206,11 +215,11 @@
         <div id="paginators">
             <a id="prev" class="pager" href="?page=<?= $pageDown ?>">
                 <!-- &order=<?= $orderBy ?> -->
-                <button class="<?= $prev ?> btn btn-primary">Prev.</button>
+                <button class="<?= $prev ?> btn btn-success">Prev.</button>
             </a>
             <a id="next" class="pager" href="?page=<?= $pageUp ?>">
                 <!-- &order=<?= $orderBy ?> -->
-                <button class="<?= $next ?> btn btn-primary">Next</button>
+                <button class="<?= $next ?> btn btn-success">Next</button>
             </a>
         </div>
 
@@ -232,7 +241,7 @@
                 
                 <textarea id="descrInput" class="input form-control" name="descrInput" placeholder="Description" rows="3"></textarea>
 
-                <button id="add" type="submit" class="btn btn-md btn-primary">Add</button>
+                <button id="add" type="submit" class="btn btn-md btn-success">Add</button>
             </div>
         </form>
 
@@ -250,8 +259,5 @@
             </form>
         </div> -->
     </div>
-
-
-
 </body>
 </html>
