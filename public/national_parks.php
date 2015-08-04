@@ -7,9 +7,33 @@
     require_once "../db_connect.php";
 
 
-    // Pagination control
+    // POST request variables
+    $nameInput =     (Input::has('nameInput')     ? Input::get('nameInput')     : null);
+    $locationInput = (Input::has('locationInput') ? Input::get('locationInput') : null);
+    $dateInput =     (Input::has('dateInput')     ? Input::get('dateInput')     : null);
+    $areaInput =     (Input::has('areaInput')     ? Input::get('areaInput')     : null);
+    $descrInput =    (Input::has('descrInput')    ? Input::get('descrInput')    : null);
+
+    if ($nameInput && $locationInput && $dateInput && $areaInput) {
+        $stmt = $dbc->prepare(
+            "INSERT INTO national_parks (name, location, date_established, area_in_acres, description)
+            VALUES (:name, :location, :dateEst, :area, :descr)"
+        );
+
+        $stmt->bindValue(':name'     ,$nameInput     ,PDO::PARAM_STR);
+        $stmt->bindValue(':location' ,$locationInput ,PDO::PARAM_STR);
+        $stmt->bindValue(':dateEst'  ,$dateInput     ,PDO::PARAM_STR);
+        $stmt->bindValue(':area'     ,$areaInput     ,PDO::PARAM_STR);
+        $stmt->bindValue(':descr'    ,$descrInput    ,PDO::PARAM_STR);
+
+        $stmt->execute();
+    }
+
+
+    // Pagination control & calculation
     $parksPerPage = 4;
-    $stmt = $dbc->query('SELECT COUNT(*) FROM national_parks');
+    $stmt = $dbc->prepare('SELECT COUNT(*) FROM national_parks');
+    $stmt->execute();
     $totalParks = $stmt->fetchColumn();
     $lastPage = ceil($totalParks / $parksPerPage);
 
@@ -23,15 +47,15 @@
 
 
     // Dynamic 'ORDER BY' query
-    $order = Input::get('order');
-
-    if(Input::has('order')) {
-        if ($order == 'name' || $order == 'location' || $order == 'date_established' || $order == 'area_in_acres') {
-            $orderBy = $order;
-        }
-    } else {
-        $orderBy = 'name';
-    }
+    // if(Input::has('order')) {
+    //     $order = Input::get('order');
+    //     if ($order == 'name' || $order == 'location' || $order == 'date_established' || $order == 'area_in_acres') {
+    //         $orderBy = $order;
+    //     }
+    // } else {
+    //     $order = 'name';
+    //     $orderBy = $order;
+    // }
 
 
     // Page # control
@@ -48,11 +72,15 @@
 
     // Prepare DB query
     $stmt = $dbc->prepare(
-        "SELECT name, location, date_established, area_in_acres, description 
+        'SELECT name, location, date_established, area_in_acres, description 
         FROM national_parks 
-        ORDER BY " . $orderBy .
-        ' LIMIT '. ($page - 1) * $parksPerPage . ', ' . $parksPerPage
+        LIMIT :myLimit, :myOffset'
     );
+
+    $stmt->bindValue(':myLimit', ($page - 1) * $parksPerPage, PDO::PARAM_INT);
+    $stmt->bindValue(':myOffset', $parksPerPage, PDO::PARAM_INT);
+        // $stmt->bindValue(':myOrder', $orderBy, PDO::PARAM_STR);
+        // -- ORDER BY :myOrder 
 
     // Execute DB query, store array in $parks
     $stmt->execute();
@@ -69,34 +97,11 @@
     $next = 'btn btn-lg';
 
     if (!Input::has('page') || $page == 1) {
-        $prev = 'invisible';
+        $prev = 'disabled invisible';
     }
 
     if ($page == $lastPage) {
-        $next = 'invisible';
-    }
-
-
-    // POST request variables
-    $nameInput =     (Input::has('nameInput')     ? Input::get('nameInput')     : null);
-    $locationInput = (Input::has('locationInput') ? Input::get('locationInput') : null);
-    $dateInput =     (Input::has('dateInput')     ? Input::get('dateInput')     : null);
-    $areaInput =     (Input::has('areaInput')     ? Input::get('areaInput')     : null);
-    $descrInput =    (Input::has('descrInput')    ? Input::get('descrInput')    : null);
-
-    if ($nameInput && $locationInput && $dateInput && $areaInput && $descrInput) {
-        $stmt = $dbc->prepare(
-            "INSERT INTO national_parks (name, location, date_established, area_in_acres, description)
-            VALUES (:name, :location, :dateEst, :area, :descr)"
-        );
-
-        $stmt->bindValue(':name'     ,$nameInput     ,PDO::PARAM_STR);
-        $stmt->bindValue(':location' ,$locationInput ,PDO::PARAM_STR);
-        $stmt->bindValue(':dateEst'  ,$dateInput     ,PDO::PARAM_STR);
-        $stmt->bindValue(':area'     ,$areaInput     ,PDO::PARAM_STR);
-        $stmt->bindValue(':descr'    ,$descrInput    ,PDO::PARAM_STR);
-
-        $stmt->execute();
+        $next = 'disabled invisible';
     }
 ?>
 
@@ -105,52 +110,83 @@
     <title>National Parks</title>
     <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
     <style type="text/css">
-        .body {
+
+        a,
+        form {
             text-align: center;
         }
 
-        .table {
-            margin-bottom: 25px;
+        td {
+            font-size: 16px;
+            min-width: 10%;
         }
 
         th {
-            font-size: 22px;
+            font-size: 18px;
         }
 
-        td {
-            font-size: 20px;
+        .input {
+            width: 35%;
+            min-width: 374px;
         }
 
-        .pager {
-            display: inline-block;
+        .table {
+            margin: 25px auto;
+            margin-bottom: 25px;
+            max-width: 75%;     
         }
 
-        #paginators {
-            margin-left: 5px auto;
-            margin-right: 5px auto;
+        #add {
+            width: 50%;
         }
 
-        #orders > a {
-            margin-left: 10px;
-            margin-right: 10px;
+        #addPark {
+            clear: both;
         }
 
         #descrInput {
-            margin: 25px auto       ;
-            width: 50%; 
+            width: 50%;
+        }
+
+        #descrInput,
+        .input {
+            margin-left: auto;
+            margin-right: auto;
+            margin-bottom: 5px;
+        }
+
+        #natParks {
+            font-size: 3em;
+            margin: 25px;
+            margin-left: 12.5%;
+        }
+
+        #next {
+            float: right;
+            margin-right: 12.5%;
+        }
+
+        /*#orders > a {
+            margin-left: 10px;
+            margin-right: 10px;
+        }*/
+
+        #prev {
+            float: left;
+            margin-left: 12.5%;
         }
     </style>
 </head>
 <body>
     <div class="body">
-        <h1>National Parks</h1>
+        <h1 id="natParks">National Parks</h1>
 
         <table class="table table-striped">
             <tr>
                 <th>Name</th>
                 <th>Location</th>
                 <th>Established</th>
-                <th>Area (acres)</th>
+                <th>Acres</th>
                 <th>Description</th>
             </tr>
 
@@ -158,41 +194,45 @@
             <tr>
                 <td><?= $park['name'] ?></td>
                 <td><?= $park['location'] ?></td>
-                <td><?= $park['date_established'] ?></td>
-                <td><?= $park['area_in_acres'] ?></td>
+
+                <td><? $date = DateTime::createFromFormat('Y-m-d', $park['date_established']); echo $date->format('M j, Y'); ?></td>
+
+                <td><?= number_format(ceil($park['area_in_acres'])) ?></td>
                 <td><?= $park['description'] ?></td>
             </tr>
             <? endforeach; ?>
         </table>
 
         <div id="paginators">
-            <a class="pager" href="?page=<?= $pageDown ?>&order=<?= $orderBy ?>">
-                <button class="<?= $prev ?>">Prev.</button>
+            <a id="prev" class="pager" href="?page=<?= $pageDown ?>">
+                <!-- &order=<?= $orderBy ?> -->
+                <button class="<?= $prev ?> btn btn-primary">Prev.</button>
             </a>
-            <a class="pager" href="?page=<?= $pageUp ?>&order=<?= $orderBy ?>">
-                <button class="<?= $next ?>">Next</button>
+            <a id="next" class="pager" href="?page=<?= $pageUp ?>">
+                <!-- &order=<?= $orderBy ?> -->
+                <button class="<?= $next ?> btn btn-primary">Next</button>
             </a>
         </div>
 
-        <div id="orders">
+        <!-- <div id="orders">
             <h3>Re-order by:</h3>
             <a href="?page=<?= $page ?>&order=name">Name</a>
             <a href="?page=<?= $page ?>&order=location">Location</a>
             <a href="?page=<?= $page ?>&order=date_established">Date Est.</a>
             <a href="?page=<?= $page ?>&order=area_in_acres">Area</a>
-        </div>
+        </div> -->
 
         <form id="addPark" class="form-horizontal" method="POST">
             <div id="parkForm" class="form-group">
                 <h2>Add a Park:</h2>
-                <input type="text"   id="nameInput"       class="input"     name="nameInput"        placeholder="Park Name" autofocus>
-                <input type="text"   id="locationInput"   class="input"     name="locationInput"    placeholder="Location (i.e., 'TX')">
-                <input type="text"   id="dateInput"       class="input"     name="dateInput"        placeholder="Date ('YYYY-MM-DD')">
-                <input type="text"   id="areaInput"       class="input"     name="areaInput"        placeholder="Area (in acres)">
+                <div><input type="text"   id="nameInput"       class="input"     name="nameInput"        placeholder="Park Name" autofocus></div>
+                <div><input type="text"   id="locationInput"   class="input"     name="locationInput"    placeholder="Location (i.e., 'TX')"></div>
+                <div><input type="text"   id="dateInput"       class="input"     name="dateInput"        placeholder="Date ('YYYY-MM-DD')"></div>
+                <div><input type="text"   id="areaInput"       class="input"     name="areaInput"        placeholder="Area (in acres)"></div>
                 
                 <textarea id="descrInput" class="input form-control" name="descrInput" placeholder="Description" rows="3"></textarea>
 
-                <button type="submit" class="btn btn-sm">Add</button>
+                <button id="add" type="submit" class="btn btn-md btn-primary">Add</button>
             </div>
         </form>
 
