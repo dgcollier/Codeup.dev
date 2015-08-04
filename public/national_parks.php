@@ -46,7 +46,7 @@
     }
 
 
-    // DB query
+    // Prepare DB query
     $stmt = $dbc->prepare(
         "SELECT name, location, date_established, area_in_acres, description 
         FROM national_parks 
@@ -54,9 +54,9 @@
         ' LIMIT '. ($page - 1) * $parksPerPage . ', ' . $parksPerPage
     );
 
+    // Execute DB query, store array in $parks
     $stmt->execute();
     $parks = $stmt->fetchAll(PDO::FETCH_ASSOC);
-    // print_r($parks);
 
 
     // Change $_GET with button click
@@ -76,6 +76,28 @@
         $next = 'invisible';
     }
 
+
+    // POST request variables
+    $nameInput =     (Input::has('nameInput')     ? Input::get('nameInput')     : null);
+    $locationInput = (Input::has('locationInput') ? Input::get('locationInput') : null);
+    $dateInput =     (Input::has('dateInput')     ? Input::get('dateInput')     : null);
+    $areaInput =     (Input::has('areaInput')     ? Input::get('areaInput')     : null);
+    $descrInput =    (Input::has('descrInput')    ? Input::get('descrInput')    : null);
+
+    if ($nameInput && $locationInput && $dateInput && $areaInput && $descrInput) {
+        $stmt = $dbc->prepare(
+            "INSERT INTO national_parks (name, location, date_established, area_in_acres, description)
+            VALUES (:name, :location, :dateEst, :area, :descr)"
+        );
+
+        $stmt->bindValue(':name'     ,$nameInput     ,PDO::PARAM_STR);
+        $stmt->bindValue(':location' ,$locationInput ,PDO::PARAM_STR);
+        $stmt->bindValue(':dateEst'  ,$dateInput     ,PDO::PARAM_STR);
+        $stmt->bindValue(':area'     ,$areaInput     ,PDO::PARAM_STR);
+        $stmt->bindValue(':descr'    ,$descrInput    ,PDO::PARAM_STR);
+
+        $stmt->execute();
+    }
 ?>
 
 <html>
@@ -87,20 +109,16 @@
             text-align: center;
         }
 
-        table {
-            margin: auto;
+        .table {
             margin-bottom: 25px;
-
         }
 
         th {
             font-size: 22px;
-            padding: 10px;
         }
 
         td {
             font-size: 20px;
-            padding: 10px;
         }
 
         .pager {
@@ -115,6 +133,11 @@
         #orders > a {
             margin-left: 10px;
             margin-right: 10px;
+        }
+
+        #descrInput {
+            margin: 25px auto       ;
+            width: 50%; 
         }
     </style>
 </head>
@@ -158,6 +181,20 @@
             <a href="?page=<?= $page ?>&order=date_established">Date Est.</a>
             <a href="?page=<?= $page ?>&order=area_in_acres">Area</a>
         </div>
+
+        <form id="addPark" class="form-horizontal" method="POST">
+            <div id="parkForm" class="form-group">
+                <h2>Add a Park:</h2>
+                <input type="text"   id="nameInput"       class="input"     name="nameInput"        placeholder="Park Name" autofocus>
+                <input type="text"   id="locationInput"   class="input"     name="locationInput"    placeholder="Location (i.e., 'TX')">
+                <input type="text"   id="dateInput"       class="input"     name="dateInput"        placeholder="Date ('YYYY-MM-DD')">
+                <input type="text"   id="areaInput"       class="input"     name="areaInput"        placeholder="Area (in acres)">
+                
+                <textarea id="descrInput" class="input form-control" name="descrInput" placeholder="Description" rows="3"></textarea>
+
+                <button type="submit" class="btn btn-sm">Add</button>
+            </div>
+        </form>
 
         <!-- <div>
             <h4>Results per page:</h4>
