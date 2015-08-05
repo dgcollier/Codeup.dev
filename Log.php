@@ -18,14 +18,11 @@ class Log
             $this->filename = $prefix . '-' . date('Y-m-d') . '.txt';
             $this->setHandle($this->filename);
         } else {
-            echo "Invalid input for file prefix." . PHP_EOL;
-            die();
+            die('Prefix was not a string.' . PHP_EOL);
         }
 
-        touch($this->filename);
-        if (!is_writable($this->filename)) {
-            echo "You do not have permissions to write to this file." . PHP_EOL;
-            die();
+        if (!is_writable($this->filename) || !touch($this->filename)) {
+            die('Insufficient permissions.' . PHP_EOL);
         }
     }
 
