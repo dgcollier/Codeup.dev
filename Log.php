@@ -2,13 +2,46 @@
 
 class Log
 {
-    public $filename;
-    public $handle;
+    private $filename;
+    private $handle;
 
     public function __construct($prefix = 'log')
     {
-        $this->filename = $prefix . '-' . date('Y-m-d') . '.txt';
-        $this->handle = fopen($this->filename, 'a');
+        $this->setFilename($prefix);
+        // $this->filename = $prefix . '-' . date('Y-m-d') . '.txt';
+        // $this->handle = fopen($this->filename, 'a');
+    }
+
+    protected function setFilename($prefix)
+    {
+        if (is_string($prefix)) {
+            $this->filename = $prefix . '-' . date('Y-m-d') . '.txt';
+            $this->setHandle($this->filename);
+        } else {
+            echo "Invalid input for file prefix." . PHP_EOL;
+            die();
+        }
+
+        touch($this->filename);
+        if (!is_writable($this->filename)) {
+            echo "You do not have permissions to write to this file." . PHP_EOL;
+            die();
+        }
+    }
+
+    protected function setHandle($handle)
+    {
+        $this->handle = fopen($handle, 'a');
+    }
+
+    public function getFilename()
+    {
+        return $this->filename;
+    }
+
+    public function getHandle()
+    {
+        return $this->handle;
     }
 
     public function __destruct()
@@ -22,7 +55,7 @@ class Log
         $message = strtoupper($message);
         fwrite($this->handle, date('Y-m-d') . ' ' . date('H:i:s') . " [{$logLevel}] $message" . PHP_EOL);
 
-        return print_r("Login attempt recorded." . PHP_EOL);
+        return print_r("Log recorded." . PHP_EOL);
     }
 
     public function logInfo($message)
