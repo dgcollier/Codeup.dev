@@ -45,18 +45,14 @@
         $page = 1;
     }
 
-        // stopped working after inserted prepare() methods
-    // Dynamic 'ORDER BY' query
-    // if(Input::has('order')) {
-    //     $order = Input::get('order');
-    //     if ($order == 'name' || $order == 'location' || $order == 'date_established' || $order == 'area_in_acres') {
-    //         $orderBy = $order;
-    //     }
-    // } else {
-    //     $order = 'name';
-    //     $orderBy = $order;
-    // }
-
+    $order = (Input::has('order') ? Input::get('order') : '');
+    $orderBy = ($order == 'name' || 
+                $order == 'location' || 
+                $order == 'date_established' || 
+                $order == 'area_in_acres'  
+                    ? Input::get('order') 
+                    : 'id'
+    );
 
     // Page # control
     $page = intval($page);
@@ -73,19 +69,22 @@
     // Prepare DB query
     $stmt = $dbc->prepare(
         'SELECT name, location, date_established, area_in_acres, description 
-        FROM national_parks 
-        LIMIT :myLimit, :myOffset'
+        FROM national_parks
+        ORDER BY ' . $orderBy .
+        ' LIMIT :myLimit OFFSET :myOffset'
     );
 
-    $stmt->bindValue(':myLimit', ($page - 1) * $parksPerPage, PDO::PARAM_INT);
-    $stmt->bindValue(':myOffset', $parksPerPage, PDO::PARAM_INT);
-        // $stmt->bindValue(':myOrder', $orderBy, PDO::PARAM_STR);
-        // -- ORDER BY :myOrder 
+
+    // -- Order, Limit, & Offset 
+    // $stmt->bindValue(':myOrder', $orderBy, PDO::PARAM_STR);
+    $stmt->bindValue(':myOffset', ($page - 1) * $parksPerPage, PDO::PARAM_INT);
+    $stmt->bindValue(':myLimit', $parksPerPage, PDO::PARAM_INT);
 
 
     // Execute DB query, store array in $parks
     $stmt->execute();
     $parks = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    // var_dump($parks);
 
 
     // Change $_GET with button click
@@ -171,10 +170,18 @@
             margin-right: 12.5%;
         }
 
-        /*#orders > a {
+        #orders {
+            text-align: center;
+            color: #f5f5f5;
+            margin: auto;
+            width: 25%;
+        }
+
+        #orders > a {
             margin-left: 10px;
             margin-right: 10px;
-        }*/
+            color: #f5f5f5;
+        }
 
         #parkForm > h2 {
             color: #f5f5f5;
@@ -213,23 +220,23 @@
         </table>
 
         <div id="paginators">
-            <a id="prev" class="pager" href="?page=<?= $pageDown ?>">
+            <a id="prev" class="pager" href="?page=<?= $pageDown ?>&order=<?= $orderBy ?>">
                 <!-- &order=<?= $orderBy ?> -->
                 <button class="<?= $prev ?> btn btn-success">Prev.</button>
             </a>
-            <a id="next" class="pager" href="?page=<?= $pageUp ?>">
+            <a id="next" class="pager" href="?page=<?= $pageUp ?>&order=<?= $orderBy ?>">
                 <!-- &order=<?= $orderBy ?> -->
                 <button class="<?= $next ?> btn btn-success">Next</button>
             </a>
         </div>
 
-        <!-- <div id="orders">
+        <div id="orders">
             <h3>Re-order by:</h3>
             <a href="?page=<?= $page ?>&order=name">Name</a>
             <a href="?page=<?= $page ?>&order=location">Location</a>
             <a href="?page=<?= $page ?>&order=date_established">Date Est.</a>
             <a href="?page=<?= $page ?>&order=area_in_acres">Area</a>
-        </div> -->
+        </div>
 
         <form id="addPark" class="form-horizontal" method="POST">
             <div id="parkForm" class="form-group">
