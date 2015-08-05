@@ -31,8 +31,13 @@ class Input
         if (empty($_REQUEST[$key])) {
             return $default;
         } else {
-            return htmlspecialchars(strip_tags($_REQUEST[$key]));
+            return trim(htmlspecialchars(strip_tags($_REQUEST[$key])));
         }
+    }
+
+    public static function escape ($value)
+    {
+        return trim(htmlspecialchars(strip_tags($value)));
     }
 
     ///////////////////////////////////////////////////////////////////////////
