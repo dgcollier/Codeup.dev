@@ -10,12 +10,7 @@ class Input
      */
     public static function has($key)
     {
-        // TODO: Fill in this function
-        if (isset($_REQUEST[$key])) {
-            return true;
-        } else {
-            return false;
-        }
+        return isset($_REQUEST[$key]) ? true : false;
     }
 
     /**
@@ -27,18 +22,57 @@ class Input
      */
     public static function get($key, $default = null)
     {
-        // TODO: Fill in this function
-        if (empty($_REQUEST[$key])) {
-            return $default;
-        } else {
-            return trim(htmlspecialchars(strip_tags($_REQUEST[$key])));
-        }
+        return !empty($_REQUEST[$key]) ? self::escape($_REQUEST[$key]) : $default;
     }
 
     public static function escape ($value)
     {
         return trim(htmlspecialchars(strip_tags($value)));
     }
+
+    public static function getString($key)
+    {
+        $value = static::get($key);
+
+        if (!isset($value)) {
+            throw new Exception('Input was empty.');
+        }
+
+        if(!is_string($value) || is_numeric($value)) {
+            throw new Exception('Input should be a text string.');
+        }
+
+        return $value;
+    }
+
+    public static function getNumber($key)
+    {
+        $value = str_replace(',', '', static::get($key));
+
+        if (!isset($value)) {
+            throw new Exception('Input was empty.');
+        }
+
+        if(!is_numeric($value)) {
+            throw new Exception('Input should be numeric.');
+        }
+
+        return $value;
+    }
+
+    // public static function getDate($key)
+    // {
+    //     $value = static::get($key);
+    //     $format = 'Y-m-d';
+
+    //     $dateObject = DateTime::createFromFormat($format, $value);
+
+    //     if ($dateObject) {
+    //         return $dateObject->date;
+    //     } else {
+    //         throw new Exception ('Input was not a valid date.');
+    //     }
+    // }
 
     ///////////////////////////////////////////////////////////////////////////
     //                      DO NOT EDIT ANYTHING BELOW!!                     //
