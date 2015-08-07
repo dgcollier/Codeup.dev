@@ -5,33 +5,60 @@
     require_once "../Input.php";
     require_once "../parks_config.php";
     require_once "../db_connect.php";
+    require_once "../states_array.php";
+    require_once "../Log.php";
+    
 
+    $errors = [];
 
-    // POST request variables
-    $nameInput =     (Input::has('nameInput')     ? Input::get('nameInput')     : null);
-    $locationInput = (Input::has('locationInput') ? Input::get('locationInput') : null);
-    $dateInput =     (Input::has('dateInput')     ? Input::get('dateInput')     : null);
-    $areaInput =     (Input::has('areaInput')     ? Input::get('areaInput')     : null);
-    $descrInput =    (Input::has('descrInput')    ? Input::get('descrInput')    : null);
-
-    if ($nameInput && $locationInput && $dateInput && $areaInput) {
+    if (!empty($_POST)) {
         $stmt = $dbc->prepare(
             "INSERT INTO national_parks (name, location, date_established, area_in_acres, description)
             VALUES (:name, :location, :dateEst, :area, :descr)"
         );
 
-        $stmt->bindValue(':name'     ,$nameInput     ,PDO::PARAM_STR);
-        $stmt->bindValue(':location' ,$locationInput ,PDO::PARAM_STR);
-        $stmt->bindValue(':dateEst'  ,$dateInput     ,PDO::PARAM_STR);
-        $stmt->bindValue(':area'     ,$areaInput     ,PDO::PARAM_STR);
-        $stmt->bindValue(':descr'    ,$descrInput    ,PDO::PARAM_STR);
+        try {
+            $nameInput = (Input::has('nameInput') ? Input::getString('nameInput') : null);
+            $stmt->bindValue(':name', $nameInput, PDO::PARAM_STR);
+        } catch (Exception $e) {
+            $errors[] = 'Error on name field: ' . $e->getMessage();
+        }
+        
+        try {
+            $locationInput = (Input::has('locationInput') ? Input::getString('locationInput') : null);
+            $stmt->bindValue(':location', $locationInput, PDO::PARAM_STR);
+        } catch (Exception $e) {
+            $errors[] = 'Error on location field: ' . $e->getMessage();
+        }        
 
-        $stmt->execute();
+        try {
+            $dateInput =     (Input::has('dateInput') ? Input::getString('dateInput') : null);
+            $stmt->bindValue(':dateEst', $dateInput, PDO::PARAM_STR);
+        } catch (Exception $e) {
+            $errors[] = 'Error on date field: ' . $e->getMessage();
+        }
+
+        try {
+            $areaInput =     (Input::has('areaInput') ? Input::getNumber('areaInput') : null);
+            $stmt->bindValue(':area', $areaInput, PDO::PARAM_STR);
+        } catch (Exception $e) {
+            $errors[] = 'Error on area field: ' . $e->getMessage();
+        } 
+
+        try {
+            $descrInput =    (Input::has('descrInput') ? Input::getString('descrInput') : null);
+            $stmt->bindValue(':descr', $descrInput, PDO::PARAM_STR);
+        }  catch (Exception $e) {
+            $errors[] = 'Error on description field: ' . $e->getMessage();
+        } 
+
+        if(empty($errors)) {
+            $stmt->execute();
+        }
     }
 
-
     // Pagination control & calculation
-    $parksPerPage = 4; // fix this ???
+    $parksPerPage = 5; // fix this ???
     $stmt = $dbc->prepare('SELECT COUNT(*) FROM national_parks');
     $stmt->execute();
     $totalParks = $stmt->fetchColumn();
@@ -159,6 +186,11 @@
             margin-bottom: 5px;
         }
 
+        #errorMessages {
+            text-align: center;
+            color: #ff0033 ;
+        }
+
         #natParks {
             font-size: 3em;
             margin: 25px;
@@ -208,7 +240,7 @@
 
             <? foreach ($parks as $park): ?>
             <tr class="success">
-                <td><?= $park['name'] ?></td>
+                <td><strong><?= $park['name'] ?></strong></td>
                 <td><?= $park['location'] ?></td>
 
                 <td><? $date = DateTime::createFromFormat('Y-m-d', $park['date_established']); echo $date->format('M j, Y'); ?></td>
@@ -238,13 +270,17 @@
             <a href="?page=<?= $page ?>&order=area_in_acres">Area</a>
         </div>
 
+        <?php foreach ($errors as $error) : ?>
+            <h2 id="errorMessages"><?= $error; ?></h2>
+        <?php endforeach; ?>
+
         <form id="addPark" class="form-horizontal" method="POST">
             <div id="parkForm" class="form-group">
                 <h2>Add a Park:</h2>
-                <div><input type="text"   id="nameInput"       class="input"     name="nameInput"        placeholder="Park Name" autofocus></div>
-                <div><input type="text"   id="locationInput"   class="input"     name="locationInput"    placeholder="Location (i.e., 'TX')"></div>
-                <div><input type="text"   id="dateInput"       class="input"     name="dateInput"        placeholder="Date ('YYYY-MM-DD')"></div>
-                <div><input type="text"   id="areaInput"       class="input"     name="areaInput"        placeholder="Area (in acres)"></div>
+                <div><input type="text"   id="nameInput"       class="input"     name="nameInput"     placeholder="Park Name" autofocus></div>
+                <div><input type="text"   id="locationInput"   class="input"     name="locationInput" placeholder="Location"></div>
+                <div><input type="text"   id="dateInput"       class="input"     name="dateInput"     placeholder="Date ('YYYY-MM-DD')"></div>
+                <div><input type="text"   id="areaInput"       class="input"     name="areaInput"     placeholder="Area (in acres)"></div>
                 
                 <textarea id="descrInput" class="input form-control" name="descrInput" placeholder="Description" rows="3"></textarea>
 
