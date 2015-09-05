@@ -1,0 +1,112 @@
+@import 'colors';
+
+body {
+	background-color: $gray-color;
+}
+
+@for $i  from 1 through 9 {
+	#box-#{$i} {
+		height: 200px;
+		width: 200px;
+	}
+}
+
+@each $animal in puma, sea-lion, egret, mongoose {
+	##{$animal}-icon {
+		background-image: url('images/#{$animal}.png');
+	}
+}
+
+$type: ocean;
+p {
+	@if $type == ocean {
+		color: blue;
+	} @else if $type == matador {
+		color: red;
+	} @else if $type == monster {
+		color: green;
+	} @else {
+		color: black;
+	}
+}
+
+.some-class {
+	border: 1px solid #f00;
+	background-color: #fdd;
+}
+
+.another-class {
+	@extend .some-class;
+	border-width: 3px;
+}
+
+.main-section {
+	height: 280px;
+
+	h1 {
+		color: #f00;
+	}
+
+	p {
+		margin-bottom: 20px;
+	}
+
+	a {
+		color: #00f;
+
+		&:hover {
+			text-decoration: none;
+		}
+	}
+}
+
+@mixin large-text {
+	font: {
+		family: Arial;
+		size: 20px;
+		weight: bold;
+		}
+}
+
+p {
+	@include large-text;
+}
+
+span {
+	@include large-text;
+}
+
+@mixin sexy-border($width, $color: #ff0) {
+	border: {
+		color: $color;
+		width: $width;
+		style: dashed;
+	}
+}
+
+.box {
+	@include sexy-border(4px);
+}
+
+$colors: (
+	default: #e2e9f0,
+	primary: #456db8,
+	success: #45b87b,
+	info:	 #324f88,
+	warning: #fb8217,
+	danger:  #fb4217
+);
+
+@each $key, $value in $colors {
+	.color-#{$key} {
+		color: $value;
+	}
+
+	.bg-color-#{$key} {
+		background-color: $value;
+	}
+}
+
+@function col($col) {
+	@return map-get($colors, '#{$col}');
+}

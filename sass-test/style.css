@@ -1,0 +1,127 @@
+h1 {
+  color: #009900; }
+
+body {
+  background-color: #ccc; }
+
+#box-1 {
+  height: 200px;
+  width: 200px; }
+
+#box-2 {
+  height: 200px;
+  width: 200px; }
+
+#box-3 {
+  height: 200px;
+  width: 200px; }
+
+#box-4 {
+  height: 200px;
+  width: 200px; }
+
+#box-5 {
+  height: 200px;
+  width: 200px; }
+
+#box-6 {
+  height: 200px;
+  width: 200px; }
+
+#box-7 {
+  height: 200px;
+  width: 200px; }
+
+#box-8 {
+  height: 200px;
+  width: 200px; }
+
+#box-9 {
+  height: 200px;
+  width: 200px; }
+
+#puma-icon {
+  background-image: url("images/puma.png"); }
+
+#sea-lion-icon {
+  background-image: url("images/sea-lion.png"); }
+
+#egret-icon {
+  background-image: url("images/egret.png"); }
+
+#mongoose-icon {
+  background-image: url("images/mongoose.png"); }
+
+p {
+  color: blue; }
+
+.some-class, .another-class {
+  border: 1px solid #f00;
+  background-color: #fdd; }
+
+.another-class {
+  border-width: 3px; }
+
+.main-section {
+  height: 280px; }
+  .main-section h1 {
+    color: #f00; }
+  .main-section p {
+    margin-bottom: 20px; }
+  .main-section a {
+    color: #00f; }
+    .main-section a:hover {
+      text-decoration: none; }
+
+p {
+  font-family: Arial;
+  font-size: 20px;
+  font-weight: bold; }
+
+span {
+  font-family: Arial;
+  font-size: 20px;
+  font-weight: bold; }
+
+.box {
+  border-color: #ff0;
+  border-width: 4px;
+  border-style: dashed; }
+
+.color-default {
+  color: #e2e9f0; }
+
+.bg-color-default {
+  background-color: #e2e9f0; }
+
+.color-primary {
+  color: #456db8; }
+
+.bg-color-primary {
+  background-color: #456db8; }
+
+.color-success {
+  color: #45b87b; }
+
+.bg-color-success {
+  background-color: #45b87b; }
+
+.color-info {
+  color: #324f88; }
+
+.bg-color-info {
+  background-color: #324f88; }
+
+.color-warning {
+  color: #fb8217; }
+
+.bg-color-warning {
+  background-color: #fb8217; }
+
+.color-danger {
+  color: #fb4217; }
+
+.bg-color-danger {
+  background-color: #fb4217; }
+
+/*# sourceMappingURL=style.css.map */

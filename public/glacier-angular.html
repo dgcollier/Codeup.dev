@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Angular Testing</title>
+	<script type="text/javascript" src="/js/angular.min.js"></script>
+</head>
+<body ng-app="glacierAngular">
+
+	<h1 class="ng-cloak">{{ "Hello, World!" | uppercase }}</h1>
+
+	<p>Let's do math:</p> 
+	<p class="ng-loak">(327 * 3) + (423 / 2) = {{ (327 * 3) + (423 / 2) | number:2 }}</p>
+
+	<ul class="ng-cloak">
+	    <li ng-show="1 < 2">One is Less Than Two</li>
+	    <li ng-show="1 <= 2">One is Less Than or Equal to Two</li>
+	    <li ng-show="1 == 2">One is Equal to Two</li>
+	    <li ng-show="1 >= 2">One is Greater Than or Equal to Two</li>
+	    <li ng-show="1 > 2">One is Greater Than Two</li>
+	</ul>
+
+	<ol class="ng-cloak">
+	    <li ng-repeat="letter in ['A', 'B', 'C', 'D', 'E', 'F']">{{ letter }}</li>
+	</ol>
+
+	<ul class="ng-cloak">
+	    <li ng-repeat="num in [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]" ng-if="num % 2 == 0">
+	        {{ num }} is even!
+	    </li>
+	</ul>	
+
+	<img ng-src="{{ '/img/caturday.gif' }}" alt="Cat gifs are always funny">
+	<img ng-src="/img/{{ 'caturday.gif' }}" alt="Cat gifs are always funny">
+	<img ng-src="/img/{{ 'caturday' }}.gif" alt="Cat gifs are always funny">
+
+<script type="text/javascript" src="/js/glacierAngular.js"></script>
+</body>
+</html>
